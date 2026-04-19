@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureGuard Pro — Dashboard</title>
+    <!-- No-cache: logout ke baad back button se dashboard nahi aayega -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #050a0e;
+            --bg-secondary: #0a1520;
+            --bg-card: #0d1e2e;
+            --bg-card-hover: #112233;
+            --accent-cyan: #00d4ff;
+            --accent-green: #00ff88;
+            --accent-red: #ff3355;
+            --accent-orange: #ff8c00;
+            --accent-yellow: #ffd700;
+            --text-primary: #e0f0ff;
+            --text-secondary: #6a8fa8;
+            --text-muted: #344a5a;
+            --border: #0e2233;
+            --border-glow: rgba(0,212,255,0.2);
+            --glow-cyan: 0 0 20px rgba(0,212,255,0.3);
+            --glow-green: 0 0 20px rgba(0,255,136,0.3);
+            --glow-red: 0 0 20px rgba(255,51,85,0.4);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Exo 2',sans-serif; background:var(--bg-primary); color:var(--text-primary); min-height:100vh; overflow-x:hidden; }
+        body::before {
+            content:''; position:fixed; inset:0;
+            background-image: linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);
+            background-size:40px 40px; pointer-events:none; z-index:0;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            position:sticky; top:0; z-index:100;
+            display:flex; align-items:center; justify-content:space-between;
+            padding:0 2rem; height:64px;
+            background:rgba(5,10,14,0.95); border-bottom:1px solid var(--border); backdrop-filter:blur(12px);
+        }
+        .navbar::after { content:''; position:absolute; bottom:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--accent-cyan),transparent); opacity:0.5; }
+        .nav-brand { display:flex; align-items:center; gap:10px; font-family:'Rajdhani',sans-serif; font-size:1.3rem; font-weight:700; letter-spacing:2px; color:var(--accent-cyan); text-transform:uppercase; }
+        .nav-brand i { font-size:1.5rem; }
+
+        /* Nav links — NO logout inside here */
+        .nav-links { display:flex; gap:0.5rem; }
+        .nav-links a { display:flex; align-items:center; gap:6px; padding:6px 16px; color:var(--text-secondary); text-decoration:none; font-family:'Rajdhani',sans-serif; font-weight:600; font-size:0.9rem; letter-spacing:1px; text-transform:uppercase; border-radius:4px; border:1px solid transparent; transition:all 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color:var(--accent-cyan); border-color:var(--border-glow); background:rgba(0,212,255,0.05); }
+
+        .nav-right { display:flex; align-items:center; gap:1rem; }
+        .status-badge { display:flex; align-items:center; gap:6px; padding:5px 14px; border-radius:20px; font-family:'Share Tech Mono',monospace; font-size:0.75rem; letter-spacing:1px; background:rgba(0,255,136,0.08); border:1px solid rgba(0,255,136,0.3); color:var(--accent-green); }
+        .status-badge .fa-circle { font-size:0.5rem; animation:pulse-dot 2s infinite; }
+
+        /* SINGLE logout button */
+        .logout-btn { display:flex; align-items:center; gap:6px; padding:5px 14px; border-radius:4px; font-family:'Rajdhani',sans-serif; font-size:0.85rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--accent-red); border:1px solid rgba(255,51,85,0.3); background:rgba(255,51,85,0.05); cursor:pointer; transition:all 0.2s; }
+        .logout-btn:hover { background:rgba(255,51,85,0.15); box-shadow:var(--glow-red); }
+
+        @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+        /* HAMBURGER */
+        .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:5px; }
+        .hamburger span { width:24px; height:2px; background:var(--accent-cyan); border-radius:2px; transition:all 0.3s; }
+
+        /* MAIN */
+        .dashboard { position:relative; z-index:1; max-width:1400px; margin:0 auto; padding:2rem; }
+        .page-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:2rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border); }
+        .page-header h1 { font-family:'Rajdhani',sans-serif; font-size:2.2rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; }
+        .page-header h1 span { color:var(--accent-cyan); }
+        .live-clock { font-family:'Share Tech Mono',monospace; font-size:0.85rem; color:var(--text-secondary); text-align:right; }
+        .live-clock .time { font-size:1.4rem; color:var(--accent-cyan); display:block; letter-spacing:2px; }
+
+        /* STATS */
+        .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.5rem; }
+        .stat-card { background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:1.25rem 1.5rem; display:flex; align-items:center; gap:1rem; position:relative; overflow:hidden; transition:all 0.3s; }
+        .stat-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; border-radius:8px 0 0 8px; }
+        .stat-card:hover { background:var(--bg-card-hover); transform:translateY(-2px); }
+        .stat-card.card-alerts::before     { background:var(--accent-red); }
+        .stat-card.card-pending::before    { background:var(--accent-orange); }
+        .stat-card.card-intrusions::before { background:var(--accent-yellow); }
+        .stat-card.card-faces::before      { background:var(--accent-cyan); }
+        .stat-icon { width:48px; height:48px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
+        .stat-icon.alerts     { background:rgba(255,51,85,0.1);  color:var(--accent-red);    border:1px solid rgba(255,51,85,0.2); }
+        .stat-icon.pending    { background:rgba(255,140,0,0.1);  color:var(--accent-orange); border:1px solid rgba(255,140,0,0.2); }
+        .stat-icon.intrusions { background:rgba(255,215,0,0.1);  color:var(--accent-yellow); border:1px solid rgba(255,215,0,0.2); }
+        .stat-icon.faces      { background:rgba(0,212,255,0.1);  color:var(--accent-cyan);   border:1px solid rgba(0,212,255,0.2); }
+        .stat-info h3 { font-family:'Rajdhani',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-secondary); margin-bottom:4px; }
+        .stat-value { font-family:'Share Tech Mono',monospace; font-size:2rem; font-weight:400; color:var(--text-primary); line-height:1; }
+
+        /* GRID */
+        .dashboard-grid { display:grid; grid-template-columns:1fr 380px; gap:1.5rem; margin-bottom:1.5rem; }
+        .charts-row { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:1.5rem; }
+
+        /* CARDS */
+        .card { background:var(--bg-card); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+        .card-header { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.5rem; border-bottom:1px solid var(--border); background:rgba(0,212,255,0.02); }
+        .card-header h2 { display:flex; align-items:center; gap:8px; font-family:'Rajdhani',sans-serif; font-size:1rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+        .card-header h2 i { color:var(--accent-cyan); font-size:0.9rem; }
+        .card-badge { font-family:'Share Tech Mono',monospace; font-size:0.7rem; padding:3px 10px; border-radius:20px; background:rgba(0,255,136,0.08); border:1px solid rgba(0,255,136,0.25); color:var(--accent-green); letter-spacing:1px; }
+
+        /* VIDEO */
+        .video-container { position:relative; background:#000; aspect-ratio:16/9; overflow:hidden; }
+        .video-container img { width:100%; height:100%; object-fit:cover; display:block; }
+        .video-overlay { position:absolute; top:0; left:0; right:0; display:flex; justify-content:space-between; padding:10px 14px; background:linear-gradient(to bottom,rgba(0,0,0,0.6),transparent); }
+        .video-tag { font-family:'Share Tech Mono',monospace; font-size:0.7rem; color:var(--accent-green); background:rgba(0,0,0,0.5); padding:3px 8px; border-radius:3px; border:1px solid rgba(0,255,136,0.3); letter-spacing:1px; }
+        .rec-dot { display:flex; align-items:center; gap:5px; font-family:'Share Tech Mono',monospace; font-size:0.7rem; color:var(--accent-red); }
+        .rec-dot::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--accent-red); animation:pulse-dot 1s infinite; }
+        .video-container::after { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px); pointer-events:none; }
+        .rec-indicator { display:none; position:absolute; top:10px; right:14px; align-items:center; gap:6px; font-family:'Share Tech Mono',monospace; font-size:0.7rem; color:var(--accent-red); background:rgba(0,0,0,0.6); padding:3px 10px; border-radius:3px; border:1px solid rgba(255,51,85,0.4); letter-spacing:1px; z-index:10; }
+        .rec-indicator.active { display:flex; }
+        .rec-indicator::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--accent-red); animation:pulse-dot 1s infinite; }
+
+        .card-footer { padding:1rem 1.5rem; border-top:1px solid var(--border); display:flex; gap:0.75rem; flex-wrap:wrap; }
+        .btn { display:inline-flex; align-items:center; gap:6px; padding:7px 18px; border-radius:4px; font-family:'Rajdhani',sans-serif; font-weight:600; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; text-decoration:none; border:none; cursor:pointer; transition:all 0.2s; }
+        .btn-primary   { background:rgba(0,212,255,0.1);  border:1px solid rgba(0,212,255,0.3);  color:var(--accent-cyan); }
+        .btn-primary:hover   { background:rgba(0,212,255,0.2); }
+        .btn-secondary { background:rgba(255,255,255,0.03); border:1px solid var(--border); color:var(--text-secondary); }
+        .btn-secondary:hover { background:rgba(255,255,255,0.06); color:var(--text-primary); }
+        .btn-danger    { background:rgba(255,51,85,0.08);  border:1px solid rgba(255,51,85,0.3);  color:var(--accent-red); }
+        .btn-danger:hover    { background:rgba(255,51,85,0.18); }
+        .btn-danger.recording { background:rgba(255,51,85,0.22); border-color:var(--accent-red); animation:pulse-border 1.2s infinite; }
+        @keyframes pulse-border { 0%,100%{box-shadow:0 0 0 0 rgba(255,51,85,0)} 50%{box-shadow:0 0 0 4px rgba(255,51,85,0.25)} }
+
+        /* ALERTS */
+        .alerts-list { padding:0.5rem 0; max-height:360px; overflow-y:auto; }
+        .alerts-list::-webkit-scrollbar { width:4px; }
+        .alerts-list::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+        .alert-item { display:flex; align-items:flex-start; gap:12px; padding:0.85rem 1.5rem; border-bottom:1px solid var(--border); transition:background 0.2s; }
+        .alert-item:hover { background:rgba(0,212,255,0.02); }
+        .alert-item:last-child { border-bottom:none; }
+        .alert-dot { width:8px; height:8px; border-radius:50%; margin-top:5px; flex-shrink:0; }
+        .alert-dot.motion       { background:var(--accent-orange); }
+        .alert-dot.face         { background:var(--accent-red); }
+        .alert-dot.unknown_face { background:var(--accent-yellow); }
+        .alert-dot.info         { background:var(--accent-cyan); }
+        .alert-content { flex:1; min-width:0; }
+        .alert-title { font-family:'Rajdhani',sans-serif; font-size:0.9rem; font-weight:600; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .alert-time  { font-family:'Share Tech Mono',monospace; font-size:0.7rem; color:var(--text-muted); margin-top:2px; }
+        .alert-badge { font-family:'Share Tech Mono',monospace; font-size:0.65rem; padding:2px 8px; border-radius:3px; letter-spacing:1px; flex-shrink:0; align-self:center; }
+        .alert-badge.motion       { background:rgba(255,140,0,0.1);  color:var(--accent-orange); border:1px solid rgba(255,140,0,0.25); }
+        .alert-badge.face         { background:rgba(255,51,85,0.1);   color:var(--accent-red);    border:1px solid rgba(255,51,85,0.25); }
+        .alert-badge.unknown_face { background:rgba(255,215,0,0.1);   color:var(--accent-yellow); border:1px solid rgba(255,215,0,0.25); }
+        .no-alerts { padding:3rem 1.5rem; text-align:center; color:var(--text-muted); font-family:'Share Tech Mono',monospace; font-size:0.8rem; }
+        .no-alerts i { font-size:2rem; display:block; margin-bottom:0.75rem; opacity:0.3; }
+
+        /* SYSTEM BAR */
+        .system-bar { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-top:1.5rem; }
+        .sys-card { background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; }
+        .sys-icon { width:36px; height:36px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:1rem; background:rgba(0,212,255,0.08); color:var(--accent-cyan); border:1px solid rgba(0,212,255,0.15); flex-shrink:0; }
+        .sys-label { font-family:'Rajdhani',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); }
+        .sys-value { font-family:'Share Tech Mono',monospace; font-size:0.95rem; color:var(--text-primary); margin-top:1px; }
+        .sys-value.online           { color:var(--accent-green); }
+        .sys-value.recording-active { color:var(--accent-red); animation:pulse-dot 1s infinite; }
+
+        /* CHART */
+        .chart-container { padding:1rem; height:220px; position:relative; }
+
+        /* TOAST */
+        .toast { position:fixed; bottom:2rem; right:2rem; background:var(--bg-card); border:1px solid var(--accent-cyan); border-radius:8px; padding:1rem 1.5rem; display:flex; align-items:center; gap:10px; color:var(--text-primary); font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:1px; z-index:999; animation:slide-in 0.3s ease; max-width:380px; }
+        .toast.alert-toast { border-color:var(--accent-red); color:var(--accent-red); }
+        .toast.hidden { display:none; }
+        @keyframes slide-in { from{transform:translateX(100%);opacity:0} to{transform:translateX(0);opacity:1} }
+
+        /* RESPONSIVE */
+        @media (max-width:1100px) {
+            .stats-grid { grid-template-columns:repeat(2,1fr); }
+            .dashboard-grid { grid-template-columns:1fr; }
+            .charts-row { grid-template-columns:1fr; }
+            .system-bar { grid-template-columns:repeat(2,1fr); }
+        }
+        @media (max-width:768px) {
+            .navbar { padding:0 1rem; }
+            .nav-links {
+                display:none; flex-direction:column;
+                position:absolute; top:64px; left:0; right:0;
+                background:rgba(5,10,14,0.98); border-bottom:1px solid var(--border);
+                padding:1rem; gap:0.25rem; z-index:99;
+            }
+            .nav-links.open { display:flex; }
+            .nav-links a { padding:10px 16px; }
+            .hamburger { display:flex; }
+            .status-badge span:not(.fa-circle) { display:none; }
+            .logout-btn span { display:none; }
+            .dashboard { padding:1rem; }
+            .page-header h1 { font-size:1.5rem; }
+            .stats-grid { grid-template-columns:repeat(2,1fr); gap:0.75rem; }
+            .stat-card { padding:1rem; }
+            .stat-value { font-size:1.5rem; }
+            .system-bar { grid-template-columns:1fr 1fr; }
+            .card-footer { flex-wrap:wrap; }
+            .btn { font-size:0.75rem; padding:6px 12px; }
+        }
+        @media (max-width:480px) {
+            .stats-grid { grid-template-columns:1fr 1fr; }
+            .system-bar { grid-template-columns:1fr; }
+            .page-header { flex-direction:column; align-items:flex-start; gap:0.5rem; }
+            .live-clock { text-align:left; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><i class="fas fa-shield-alt"></i><span>SecureGuard Pro</span></div>
+
+        <!-- Nav links — ONLY page links, NO logout -->
+        <div class="nav-links" id="nav-links">
+            <a href="/" class="active"><i class="fas fa-th-large"></i> Dashboard</a>
+            <a href="/live"><i class="fas fa-video"></i> Live Feed</a>
+            <a href="/alerts"><i class="fas fa-bell"></i> Alerts</a>
+            <a href="/people"><i class="fas fa-users"></i> People</a>
+            <a href="/settings"><i class="fas fa-sliders-h"></i> Settings</a>
+        </div>
+
+        <!-- Right: status + SINGLE logout -->
+        <div class="nav-right">
+            <span class="status-badge"><i class="fas fa-circle"></i> <span>System Online</span></span>
+            <button class="logout-btn" onclick="doLogout()">
+                <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+            </button>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <div class="page-header">
+            <h1>Security <span>Dashboard</span></h1>
+            <div class="live-clock">
+                <span class="time" id="clock">--:--:--</span>
+                <span id="date-display"></span>
+            </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-grid">
+            <div class="stat-card card-alerts">
+                <div class="stat-icon alerts"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="stat-info">
+                    <h3>Total Alerts (24h)</h3>
+                    <p class="stat-value" id="total-alerts">{{ stats.total or 0 }}</p>
+                </div>
+            </div>
+            <div class="stat-card card-pending">
+                <div class="stat-icon pending"><i class="fas fa-clock"></i></div>
+                <div class="stat-info">
+                    <h3>Pending Alerts</h3>
+                    <p class="stat-value" id="pending-alerts">{{ stats.pending or 0 }}</p>
+                </div>
+            </div>
+            <div class="stat-card card-intrusions">
+                <div class="stat-icon intrusions"><i class="fas fa-user-secret"></i></div>
+                <div class="stat-info">
+                    <h3>Intrusions</h3>
+                    <p class="stat-value" id="intrusions">{{ stats.intrusions or 0 }}</p>
+                </div>
+            </div>
+            <div class="stat-card card-faces">
+                <div class="stat-icon faces"><i class="fas fa-user-times"></i></div>
+                <div class="stat-info">
+                    <h3>Unknown Faces</h3>
+                    <p class="stat-value" id="unknown-faces">{{ stats.unknown_faces or 0 }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN GRID -->
+        <div class="dashboard-grid">
+            <!-- Live Camera -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-video"></i> Live Camera Feed</h2>
+                    <span class="card-badge">LIVE</span>
+                </div>
+                <div class="video-container">
+                    <img src="/api/video_feed" alt="Live Feed" id="live-feed">
+                    <div class="video-overlay">
+                        <span class="video-tag">CAM-01 / MAIN</span>
+                        <span class="rec-dot">REC</span>
+                    </div>
+                    <div class="rec-indicator" id="rec-indicator">REC</div>
+                </div>
+                <div class="card-footer">
+                    <a href="/live" class="btn btn-primary"><i class="fas fa-expand"></i> Full Screen</a>
+                    <button class="btn btn-danger" id="rec-btn" onclick="toggleRecording()">
+                        <i class="fas fa-circle" id="rec-icon"></i>
+                        <span id="rec-text">Record</span>
+                    </button>
+                    <a href="/alerts" class="btn btn-secondary"><i class="fas fa-history"></i> View History</a>
+                </div>
+            </div>
+
+            <!-- Recent Alerts -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-bell"></i> Recent Alerts</h2>
+                    <span id="alert-count-badge" class="card-badge">0 NEW</span>
+                </div>
+                <div class="alerts-list" id="alerts-list">
+                    <div class="no-alerts"><i class="fas fa-shield-check"></i>NO ALERTS DETECTED</div>
+                </div>
+                <div class="card-footer">
+                    <a href="/alerts" class="btn btn-secondary" style="width:100%;justify-content:center;">
+                        <i class="fas fa-list"></i> View All Alerts
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHARTS -->
+        <div class="charts-row">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-line"></i> Alert Trend (Last 7 Days)</h2>
+                </div>
+                <div class="chart-container"><canvas id="trendChart"></canvas></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-pie"></i> Alert Types</h2>
+                </div>
+                <div class="chart-container"><canvas id="typeChart"></canvas></div>
+            </div>
+        </div>
+
+        <!-- SYSTEM BAR -->
+        <div class="system-bar">
+            <div class="sys-card">
+                <div class="sys-icon"><i class="fas fa-database"></i></div>
+                <div><div class="sys-label">Database</div><div class="sys-value online">Connected</div></div>
+            </div>
+            <div class="sys-card">
+                <div class="sys-icon"><i class="fas fa-camera"></i></div>
+                <div><div class="sys-label">Camera Status</div><div class="sys-value online">Active</div></div>
+            </div>
+            <div class="sys-card">
+                <div class="sys-icon"><i class="fas fa-microchip"></i></div>
+                <div><div class="sys-label">Detection Engine</div><div class="sys-value online">Running</div></div>
+            </div>
+            <div class="sys-card">
+                <div class="sys-icon" id="rec-sys-icon"><i class="fas fa-record-vinyl"></i></div>
+                <div><div class="sys-label">Recording</div><div class="sys-value" id="rec-sys-value">Standby</div></div>
+            </div>
+        </div>
+    </main>
+
+    <div id="alert-toast" class="toast hidden">
+        <i class="fas fa-exclamation-circle" id="toast-icon"></i>
+        <span id="toast-message">New alert detected!</span>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
+    <script>
+        // ── BACK BUTTON FIX ──
+        // history mein current page replace karo taaki logout ke baad
+        // back button press karne se firse dashboard na aaye
+        history.replaceState(null, '', window.location.href);
+
+        // ── LOGOUT ──
+        // window.location.replace use karo — yeh history mein add nahi hota
+        function doLogout() {
+            window.location.replace('/logout');
+        }
+
+        // ── Mobile menu ──
+        function toggleMenu() {
+            document.getElementById('nav-links').classList.toggle('open');
+        }
+
+        // ── Clock ──
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').textContent = now.toTimeString().slice(0, 8);
+            document.getElementById('date-display').textContent = now.toLocaleDateString('en-IN', {
+                weekday:'short', day:'2-digit', month:'short', year:'numeric'
+            });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // ── Toast ──
+        function showToast(msg, isAlert = false) {
+            const toast  = document.getElementById('alert-toast');
+            const msgEl  = document.getElementById('toast-message');
+            msgEl.textContent = msg;
+            toast.classList.toggle('alert-toast', isAlert);
+            toast.classList.remove('hidden');
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => toast.classList.add('hidden'), 4500);
+        }
+
+        // ── Alerts ──
+        async function loadAlerts() {
+            try {
+                const res    = await fetch('/api/alerts?limit=10');
+                const alerts = await res.json();
+                const list   = document.getElementById('alerts-list');
+                const badge  = document.getElementById('alert-count-badge');
+                if (!alerts || alerts.length === 0) {
+                    list.innerHTML = '<div class="no-alerts"><i class="fas fa-shield-check"></i>NO ALERTS DETECTED</div>';
+                    badge.textContent = '0 NEW';
+                    return;
+                }
+                badge.textContent = alerts.length + ' NEW';
+                list.innerHTML = alerts.map(a => {
+                    const typeClass = a.alert_type || 'info';
+                    const time = new Date(a.timestamp).toLocaleTimeString('en-IN', {hour:'2-digit', minute:'2-digit'});
+                    return `<div class="alert-item">
+                        <div class="alert-dot ${typeClass}"></div>
+                        <div class="alert-content">
+                            <div class="alert-title">${a.description || 'Security Alert'}</div>
+                            <div class="alert-time">${time}</div>
+                        </div>
+                        <span class="alert-badge ${typeClass}">${(a.alert_type || 'INFO').toUpperCase()}</span>
+                    </div>`;
+                }).join('');
+            } catch(e) {}
+        }
+        loadAlerts();
+        setInterval(loadAlerts, 10000);
+
+        // ── Charts ──
+        async function loadCharts() {
+            try {
+                const res    = await fetch('/api/alerts?limit=200');
+                const alerts = await res.json();
+
+                const days = [], counts = [];
+                for (let i = 6; i >= 0; i--) {
+                    const d = new Date();
+                    d.setDate(d.getDate() - i);
+                    days.push(d.toLocaleDateString('en-IN', {day:'2-digit', month:'short'}));
+                    counts.push(alerts.filter(a => new Date(a.timestamp).toDateString() === d.toDateString()).length);
+                }
+                new Chart(document.getElementById('trendChart').getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: days,
+                        datasets: [{
+                            label: 'Alerts', data: counts,
+                            borderColor: '#00d4ff', backgroundColor: 'rgba(0,212,255,0.1)',
+                            borderWidth: 2, pointBackgroundColor: '#00d4ff',
+                            pointRadius: 4, fill: true, tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { ticks: { color:'#6a8fa8', font:{size:10} }, grid: { color:'#0e2233' } },
+                            y: { ticks: { color:'#6a8fa8', font:{size:10} }, grid: { color:'#0e2233' }, beginAtZero: true }
+                        }
+                    }
+                });
+
+                const types = { motion:0, face:0, unknown_face:0, other:0 };
+                alerts.forEach(a => {
+                    if (types[a.alert_type] !== undefined) types[a.alert_type]++;
+                    else types.other++;
+                });
+                new Chart(document.getElementById('typeChart').getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Motion', 'Known Face', 'Unknown Face', 'Other'],
+                        datasets: [{
+                            data: [types.motion, types.face, types.unknown_face, types.other],
+                            backgroundColor: ['#ff8c00','#ff3355','#ffd700','#00d4ff'],
+                            borderColor: '#0d1e2e', borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { position:'bottom', labels:{ color:'#6a8fa8', font:{size:11}, padding:10 } } }
+                    }
+                });
+            } catch(e) { console.log('Chart error:', e); }
+        }
+        loadCharts();
+
+        // ── Recording ──
+        let isRecording = false;
+
+        function setRecordingUI(active, filename) {
+            isRecording = active;
+            const btn       = document.getElementById('rec-btn');
+            const icon      = document.getElementById('rec-icon');
+            const text      = document.getElementById('rec-text');
+            const indicator = document.getElementById('rec-indicator');
+            const sysVal    = document.getElementById('rec-sys-value');
+            const sysIcon   = document.getElementById('rec-sys-icon');
+            if (active) {
+                btn.classList.add('recording');
+                icon.className = 'fas fa-stop';
+                text.textContent = 'Stop';
+                indicator.classList.add('active');
+                sysVal.textContent = 'Recording';
+                sysVal.className = 'sys-value recording-active';
+                sysIcon.style.color = 'var(--accent-red)';
+                sysIcon.style.borderColor = 'rgba(255,51,85,0.4)';
+                sysIcon.style.background  = 'rgba(255,51,85,0.1)';
+            } else {
+                btn.classList.remove('recording');
+                icon.className = 'fas fa-circle';
+                text.textContent = 'Record';
+                indicator.classList.remove('active');
+                sysVal.textContent = 'Standby';
+                sysVal.className = 'sys-value';
+                sysIcon.style.color = 'var(--accent-cyan)';
+                sysIcon.style.borderColor = 'rgba(0,212,255,0.15)';
+                sysIcon.style.background  = 'rgba(0,212,255,0.08)';
+                if (filename) showToast('✅ Saved: ' + filename);
+            }
+        }
+
+        async function toggleRecording() {
+            if (!isRecording) {
+                try {
+                    const res  = await fetch('/api/recording/start', { method:'POST' });
+                    const data = await res.json();
+                    if (data.success) { setRecordingUI(true, null); showToast('🔴 Recording started'); }
+                    else showToast('⚠️ ' + (data.error || 'Could not start'), true);
+                } catch(e) { showToast('⚠️ Server error', true); }
+            } else {
+                try {
+                    const res  = await fetch('/api/recording/stop', { method:'POST' });
+                    const data = await res.json();
+                    if (data.success) setRecordingUI(false, data.filename);
+                    else showToast('⚠️ ' + (data.error || 'Could not stop'), true);
+                } catch(e) { showToast('⚠️ Server error', true); }
+            }
+        }
+
+        async function syncRecordingStatus() {
+            try {
+                const res  = await fetch('/api/recording/status');
+                const data = await res.json();
+                if (data.recording) setRecordingUI(true, null);
+            } catch(e) {}
+        }
+        syncRecordingStatus();
+
+        // ── Socket.IO ──
+        try {
+            const socket = io();
+            socket.on('new_alert', function(data) {
+                showToast(data.description || 'New security alert!', true);
+                loadAlerts();
+            });
+            socket.on('recording_started', function() {
+                setRecordingUI(true, null);
+                showToast('🔴 Auto-recording: motion detected');
+            });
+            socket.on('recording_stopped', function(data) {
+                setRecordingUI(false, data.filename);
+            });
+        } catch(e) { console.log('Socket error:', e); }
+    </script>
+</body>
+</html>

@@ -1,0 +1,774 @@
+[19:33:09] INFO secureguard — SecureGuard Pro — Starting Up
+[19:33:09] ERROR secureguard — Database error: cannot import name 'init_db' from 'core.database' (C:\Users\Asus\Downloads\smart_security_system\core\database.py)
+[19:33:09] WARNING secureguard — Camera init skipped: cannot import name 'CameraManager' from 'core.camera' (C:\Users\Asus\Downloads\smart_security_system\core\camera.py)
+[19:33:09] WARNING secureguard — Motion init skipped: cannot import name 'MotionManager' from 'core.motion_detector' (C:\Users\Asus\Downloads\smart_security_system\core\motion_detector.py)
+[19:33:11] WARNING secureguard — Face recognition skipped: FaceRecognizer.__init__() missing 1 required positional argument: 'known_faces_dir'
+[19:33:12] ERROR secureguard — Error: cannot import name 'app' from 'web.app' (C:\Users\Asus\Downloads\smart_security_system\web\app.py)
+[19:33:34] INFO secureguard — SecureGuard Pro — Starting Up
+[19:33:34] ERROR secureguard — Database error: cannot import name 'init_db' from 'core.database' (C:\Users\Asus\Downloads\smart_security_system\core\database.py)
+[19:33:34] WARNING secureguard — Camera init skipped: cannot import name 'CameraManager' from 'core.camera' (C:\Users\Asus\Downloads\smart_security_system\core\camera.py)
+[19:33:34] WARNING secureguard — Motion init skipped: cannot import name 'MotionManager' from 'core.motion_detector' (C:\Users\Asus\Downloads\smart_security_system\core\motion_detector.py)
+[19:33:38] WARNING secureguard — Face recognition skipped: FaceRecognizer.__init__() missing 1 required positional argument: 'known_faces_dir'
+[19:33:38] ERROR secureguard — Error: cannot import name 'app' from 'web.app' (C:\Users\Asus\Downloads\smart_security_system\web\app.py)
+[19:34:57] INFO secureguard — SecureGuard Pro — Starting Up
+[19:34:57] ERROR secureguard — Database error: cannot import name 'init_db' from 'core.database' (C:\Users\Asus\Downloads\smart_security_system\core\database.py)
+[19:34:57] WARNING secureguard — Camera init skipped: cannot import name 'CameraManager' from 'core.camera' (C:\Users\Asus\Downloads\smart_security_system\core\camera.py)
+[19:34:57] WARNING secureguard — Motion init skipped: cannot import name 'MotionManager' from 'core.motion_detector' (C:\Users\Asus\Downloads\smart_security_system\core\motion_detector.py)
+[19:35:00] WARNING secureguard — Face recognition skipped: FaceRecognizer.__init__() missing 1 required positional argument: 'known_faces_dir'
+[19:35:00] ERROR secureguard — Error: cannot import name 'app' from 'web.app' (C:\Users\Asus\Downloads\smart_security_system\web\app.py)
+[19:35:39] INFO secureguard — SecureGuard Pro — Starting Up
+[19:35:39] ERROR secureguard — Database error: cannot import name 'init_db' from 'core.database' (C:\Users\Asus\Downloads\smart_security_system\core\database.py)
+[19:35:39] WARNING secureguard — Camera init skipped: cannot import name 'CameraManager' from 'core.camera' (C:\Users\Asus\Downloads\smart_security_system\core\camera.py)
+[19:35:39] WARNING secureguard — Motion init skipped: cannot import name 'MotionManager' from 'core.motion_detector' (C:\Users\Asus\Downloads\smart_security_system\core\motion_detector.py)
+[19:35:41] WARNING secureguard — Face recognition skipped: FaceRecognizer.__init__() missing 1 required positional argument: 'known_faces_dir'
+[19:35:42] ERROR secureguard — Error: cannot import name 'app' from 'web.app' (C:\Users\Asus\Downloads\smart_security_system\web\app.py)
+[12:34:13] INFO secureguard — SecureGuard Pro — Starting Up
+[12:34:13] ERROR secureguard — Database error: cannot import name 'init_db' from 'core.database' (C:\Users\Asus\Downloads\smart_security_system\core\database.py)
+[12:34:14] WARNING secureguard — Camera init skipped: cannot import name 'CameraManager' from 'core.camera' (C:\Users\Asus\Downloads\smart_security_system\core\camera.py)
+[12:34:14] WARNING secureguard — Motion init skipped: cannot import name 'MotionManager' from 'core.motion_detector' (C:\Users\Asus\Downloads\smart_security_system\core\motion_detector.py)
+[12:34:15] WARNING secureguard — Face recognition skipped: FaceRecognizer.__init__() missing 1 required positional argument: 'known_faces_dir'
+[12:34:16] ERROR secureguard — Error: cannot import name 'app' from 'web.app' (C:\Users\Asus\Downloads\smart_security_system\web\app.py)
+[12:41:45] INFO secureguard — SecureGuard Pro — Starting Up
+[12:41:45] ERROR secureguard — Database error: Database.__init__() missing 1 required positional argument: 'db_path'
+[12:41:45] WARNING secureguard — Camera init skipped: cannot import name 'CameraManager' from 'core.camera' (C:\Users\Asus\Downloads\smart_security_system\core\camera.py)
+[12:41:45] WARNING secureguard — Motion init skipped: cannot import name 'MotionManager' from 'core.motion_detector' (C:\Users\Asus\Downloads\smart_security_system\core\motion_detector.py)
+[12:41:48] WARNING secureguard — Face recognition skipped: FaceRecognizer.__init__() missing 1 required positional argument: 'known_faces_dir'
+[12:41:48] ERROR secureguard — Error: cannot import name 'socketio' from 'web.app' (C:\Users\Asus\Downloads\smart_security_system\web\app.py)
+[12:48:40] INFO secureguard — SecureGuard Pro — Starting Up
+[12:48:40] ERROR secureguard — Database error: Database.__init__() missing 1 required positional argument: 'db_path'
+[12:48:41] WARNING secureguard — Alert system skipped: cannot import name 'alert_system' from 'core.alert_system' (C:\Users\Asus\Downloads\smart_security_system\core\alert_system.py)
+[12:48:41] WARNING secureguard — Camera init skipped: cannot import name 'CameraManager' from 'core.camera' (C:\Users\Asus\Downloads\smart_security_system\core\camera.py)
+[12:48:41] WARNING secureguard — Motion init skipped: cannot import name 'MotionManager' from 'core.motion_detector' (C:\Users\Asus\Downloads\smart_security_system\core\motion_detector.py)
+[12:48:43] ERROR secureguard — Error: type object 'Config' has no attribute 'SECRET_KEY'
+[12:57:55] INFO secureguard — SecureGuard Pro — Starting Up
+[12:57:55] INFO secureguard — Database ready.
+[12:57:56] WARNING secureguard — Alert system skipped: type object 'Config' has no attribute 'DETECTION_COOLDOWN'
+[12:57:56] WARNING secureguard — Camera init skipped: cannot import name 'CameraManager' from 'core.camera' (C:\Users\Asus\Downloads\smart_security_system\core\camera.py)
+[12:57:56] WARNING secureguard — Motion init skipped: cannot import name 'MotionManager' from 'core.motion_detector' (C:\Users\Asus\Downloads\smart_security_system\core\motion_detector.py)
+[12:57:58] ERROR secureguard — Error: 'NoneType' object has no attribute 'on_alert'
+[13:07:54] INFO secureguard — SecureGuard Pro — Starting Up
+[13:07:54] INFO secureguard — Database ready.
+[13:07:55] INFO secureguard — Alert system ready.
+[13:08:16] INFO secureguard — Camera started.
+[13:08:16] INFO secureguard — Motion detector ready.
+[13:08:18] INFO secureguard — Face recognizer ready.
+[13:08:19] INFO secureguard — Dashboard: http://localhost:5000
+[13:08:19] INFO secureguard — Login: admin / Admin@1234
+[13:20:56] INFO secureguard — SecureGuard Pro — Starting Up
+[13:20:56] INFO secureguard — Database ready.
+[13:20:56] INFO secureguard — Alert system ready.
+[13:21:17] INFO secureguard — Camera started.
+[13:21:17] INFO secureguard — Motion detector ready.
+[13:21:19] INFO secureguard — Face recognizer ready.
+[13:21:20] INFO secureguard — Dashboard: http://localhost:5000
+[13:21:20] INFO secureguard — Login: admin / Admin@1234
+[14:11:43] INFO secureguard — SecureGuard Pro — Starting Up
+[14:11:43] INFO secureguard — Database ready.
+[14:11:43] INFO secureguard — Alert system ready.
+[14:12:06] INFO secureguard — Camera started.
+[14:12:06] INFO secureguard — Motion detector ready.
+[14:12:09] INFO secureguard — Face recognizer ready.
+[14:12:10] INFO secureguard — Dashboard: http://localhost:5000
+[14:12:10] INFO secureguard — Login: admin / Admin@1234
+[14:22:24] INFO secureguard — SecureGuard Pro — Starting Up
+[14:22:24] INFO secureguard — Database ready.
+[14:22:24] INFO secureguard — Alert system ready.
+[14:22:48] INFO secureguard — Camera started.
+[14:22:48] INFO secureguard — Motion detector ready.
+[14:22:51] INFO secureguard — Face recognizer ready.
+[14:22:52] INFO secureguard — Dashboard: http://localhost:5000
+[14:22:52] INFO secureguard — Login: admin / Admin@1234
+[14:28:19] INFO secureguard — SecureGuard Pro — Starting Up
+[14:28:19] INFO secureguard — Database ready.
+[14:28:19] INFO secureguard — Alert system ready.
+[14:28:45] INFO secureguard — Camera started.
+[14:28:45] INFO secureguard — Motion detector ready.
+[14:28:48] INFO secureguard — Face recognizer ready.
+[14:28:49] INFO secureguard — Dashboard: http://localhost:5000
+[14:28:49] INFO secureguard — Login: admin / Admin@1234
+[14:37:20] INFO secureguard — SecureGuard Pro — Starting Up
+[14:37:20] INFO secureguard — Database ready.
+[14:37:20] INFO secureguard — Alert system ready.
+[14:37:53] INFO secureguard — Camera started.
+[14:37:53] INFO secureguard — Motion detector ready.
+[14:37:58] INFO secureguard — Face recognizer ready.
+[14:37:59] INFO secureguard — Dashboard: http://localhost:5000
+[14:37:59] INFO secureguard — Login: admin / Admin@1234
+[15:24:50] INFO secureguard — SecureGuard Pro — Starting Up
+[15:24:51] INFO secureguard — Database ready.
+[15:24:51] INFO secureguard — Alert system ready.
+[15:25:28] INFO secureguard — Camera started.
+[15:25:28] INFO secureguard — Motion detector ready.
+[15:25:32] INFO secureguard — Face recognizer ready.
+[15:25:33] INFO secureguard — Dashboard: http://localhost:5000
+[15:25:33] INFO secureguard — Login: admin / Admin@1234
+[15:31:04] INFO secureguard — SecureGuard Pro — Starting Up
+[15:31:04] INFO secureguard — Database ready.
+[15:31:05] INFO secureguard — Alert system ready.
+[15:31:36] INFO secureguard — Camera started.
+[15:31:36] INFO secureguard — Motion detector ready.
+[15:31:40] INFO secureguard — Face recognizer ready.
+[15:31:41] INFO secureguard — Dashboard: http://localhost:5000
+[15:31:41] INFO secureguard — Login: admin / Admin@1234
+[22:27:37] INFO secureguard — SecureGuard Pro — Starting Up
+[22:27:37] INFO secureguard — Database ready.
+[22:27:37] INFO secureguard — Alert system ready.
+[22:28:02] INFO secureguard — Camera started.
+[22:28:02] INFO secureguard — Motion detector ready.
+[22:28:05] INFO secureguard — Face recognizer ready.
+[22:28:05] INFO secureguard — Dashboard: http://localhost:5000
+[22:28:05] INFO secureguard — Login: admin / Admin@1234
+[22:36:17] INFO secureguard — SecureGuard Pro — Starting Up
+[22:36:17] INFO secureguard — Database ready.
+[22:36:17] INFO secureguard — Alert system ready.
+[22:36:48] INFO secureguard — Camera started.
+[22:36:48] INFO secureguard — Motion detector ready.
+[22:36:52] INFO secureguard — Face recognizer ready.
+[22:36:53] INFO secureguard — Dashboard: http://localhost:5000
+[22:36:53] INFO secureguard — Login: admin / Admin@1234
+[22:43:16] INFO secureguard — SecureGuard Pro — Starting Up
+[22:43:16] INFO secureguard — Database ready.
+[22:43:16] INFO secureguard — Alert system ready.
+[22:43:37] INFO secureguard — Camera started.
+[22:43:37] INFO secureguard — Motion detector ready.
+[22:43:39] INFO secureguard — Face recognizer ready.
+[22:43:40] INFO secureguard — Dashboard: http://localhost:5000
+[22:43:40] INFO secureguard — Login: admin / Admin@1234
+[22:49:49] INFO secureguard — SecureGuard Pro — Starting Up
+[22:49:49] INFO secureguard — Database ready.
+[22:49:50] INFO secureguard — Alert system ready.
+[22:50:17] INFO secureguard — Camera started.
+[22:50:17] INFO secureguard — Motion detector ready.
+[22:50:21] INFO secureguard — Face recognizer ready.
+[22:50:22] INFO secureguard — Dashboard: http://localhost:5000
+[22:50:22] INFO secureguard — Login: admin / Admin@1234
+[23:02:51] INFO secureguard — SecureGuard Pro — Starting Up
+[23:02:51] INFO secureguard — Database ready.
+[23:02:52] INFO secureguard — Alert system ready.
+[23:03:15] INFO secureguard — Camera started.
+[23:03:15] INFO secureguard — Motion detector ready.
+[23:03:17] INFO secureguard — Face recognizer ready.
+[23:03:17] ERROR secureguard — Error: name 'message' is not defined
+[23:06:43] INFO secureguard — SecureGuard Pro — Starting Up
+[23:06:43] INFO secureguard — Database ready.
+[23:06:43] INFO secureguard — Alert system ready.
+[23:07:06] INFO secureguard — Camera started.
+[23:07:06] INFO secureguard — Motion detector ready.
+[23:07:08] INFO secureguard — Face recognizer ready.
+[23:07:09] INFO secureguard — Dashboard: http://localhost:5000
+[23:07:09] INFO secureguard — Login: admin / Admin@1234
+[23:11:20] INFO secureguard — SecureGuard Pro — Starting Up
+[23:11:20] INFO secureguard — Database ready.
+[23:11:21] INFO secureguard — Alert system ready.
+[23:11:42] INFO secureguard — Camera started.
+[23:11:42] INFO secureguard — Motion detector ready.
+[23:11:44] INFO secureguard — Face recognizer ready.
+[23:11:44] INFO secureguard — Dashboard: http://localhost:5000
+[23:11:44] INFO secureguard — Login: admin / Admin@1234
+[23:30:14] INFO secureguard — SecureGuard Pro — Starting Up
+[23:30:14] INFO secureguard — Database ready.
+[23:30:14] INFO secureguard — Alert system ready.
+[23:30:36] INFO secureguard — Camera started.
+[23:30:36] INFO secureguard — Motion detector ready.
+[23:30:38] INFO secureguard — Face recognizer ready.
+[23:30:39] INFO secureguard — Dashboard: http://localhost:5000
+[23:30:39] INFO secureguard — Login: admin / Admin@1234
+[11:04:38] INFO secureguard — SecureGuard Pro — Starting Up
+[11:04:38] INFO secureguard — Database ready.
+[11:04:39] INFO secureguard — Alert system ready.
+[11:04:59] INFO secureguard — Camera started.
+[11:04:59] INFO secureguard — Motion detector ready.
+[11:05:02] INFO secureguard — Face recognizer ready.
+[11:05:02] INFO secureguard — Dashboard: http://localhost:5000
+[11:05:02] INFO secureguard — Login: admin / Admin@1234
+[11:13:24] INFO secureguard — SecureGuard Pro — Starting Up
+[11:13:24] INFO secureguard — Database ready.
+[11:13:25] INFO secureguard — Alert system ready.
+[11:13:44] INFO secureguard — Camera started.
+[11:13:44] INFO secureguard — Motion detector ready.
+[11:13:46] INFO secureguard — Face recognizer ready.
+[11:13:47] INFO secureguard — Dashboard: http://localhost:5000
+[11:13:47] INFO secureguard — Login: admin / Admin@1234
+[11:27:14] INFO secureguard — SecureGuard Pro — Starting Up
+[11:27:14] INFO secureguard — Database ready.
+[11:27:14] INFO secureguard — Alert system ready.
+[11:27:34] INFO secureguard — Camera started.
+[11:27:34] INFO secureguard — Motion detector ready.
+[11:27:36] INFO secureguard — Face recognizer ready.
+[11:27:37] INFO secureguard — Dashboard: http://localhost:5000
+[11:27:37] INFO secureguard — Login: admin / Admin@1234
+[11:29:37] INFO secureguard — SecureGuard Pro — Starting Up
+[11:29:37] INFO secureguard — Database ready.
+[11:29:38] INFO secureguard — Alert system ready.
+[11:30:00] INFO secureguard — Camera started.
+[11:30:00] INFO secureguard — Motion detector ready.
+[11:30:03] INFO secureguard — Face recognizer ready.
+[11:30:04] INFO secureguard — Dashboard: http://localhost:5000
+[11:30:04] INFO secureguard — Login: admin / Admin@1234
+[11:35:20] INFO secureguard — SecureGuard Pro — Starting Up
+[11:35:20] INFO secureguard — Database ready.
+[11:35:20] INFO secureguard — Alert system ready.
+[11:35:41] INFO secureguard — Camera started.
+[11:35:41] INFO secureguard — Motion detector ready.
+[11:35:43] INFO secureguard — Face recognizer ready.
+[11:35:44] INFO secureguard — Dashboard: http://localhost:5000
+[11:35:44] INFO secureguard — Login: admin / Admin@1234
+[11:38:43] INFO secureguard — SecureGuard Pro — Starting Up
+[11:38:43] INFO secureguard — Database ready.
+[11:38:43] INFO secureguard — Alert system ready.
+[11:39:04] INFO secureguard — Camera started.
+[11:39:04] INFO secureguard — Motion detector ready.
+[11:39:06] INFO secureguard — Face recognizer ready.
+[11:39:07] INFO secureguard — Dashboard: http://localhost:5000
+[11:39:07] INFO secureguard — Login: admin / Admin@1234
+[11:45:22] INFO secureguard — SecureGuard Pro — Starting Up
+[11:45:22] INFO secureguard — Database ready.
+[11:45:22] INFO secureguard — Alert system ready.
+[11:45:43] INFO secureguard — Camera started.
+[11:45:43] INFO secureguard — Motion detector ready.
+[11:45:45] INFO secureguard — Face recognizer ready.
+[11:45:45] INFO secureguard — Dashboard: http://localhost:5000
+[11:45:45] INFO secureguard — Login: admin / Admin@1234
+[11:57:11] INFO secureguard — SecureGuard Pro — Starting Up
+[11:57:11] INFO secureguard — Database ready.
+[11:57:12] INFO secureguard — Alert system ready.
+[11:57:32] INFO secureguard — Camera started.
+[11:57:32] INFO secureguard — Motion detector ready.
+[11:57:34] INFO secureguard — Face recognizer ready.
+[11:57:34] INFO secureguard — Dashboard: http://localhost:5000
+[11:57:34] INFO secureguard — Login: admin / Admin@1234
+[12:05:42] INFO secureguard — SecureGuard Pro — Starting Up
+[12:05:42] INFO secureguard — Database ready.
+[12:05:42] INFO secureguard — Alert system ready.
+[12:06:03] INFO secureguard — Camera started.
+[12:06:03] INFO secureguard — Motion detector ready.
+[12:06:05] INFO secureguard — Face recognizer ready.
+[12:06:06] INFO secureguard — Dashboard: http://localhost:5000
+[12:06:06] INFO secureguard — Login: admin / Admin@1234
+[12:09:43] INFO secureguard — SecureGuard Pro — Starting Up
+[12:09:43] INFO secureguard — Database ready.
+[12:09:43] INFO secureguard — Alert system ready.
+[12:10:01] INFO secureguard — Camera started.
+[12:10:01] INFO secureguard — Motion detector ready.
+[12:10:02] INFO secureguard — Face recognizer ready.
+[12:10:03] INFO secureguard — Dashboard: http://localhost:5000
+[12:10:03] INFO secureguard — Login: admin / Admin@1234
+[12:17:48] INFO secureguard — SecureGuard Pro — Starting Up
+[12:17:48] INFO secureguard — Database ready.
+[12:17:49] INFO secureguard — Alert system ready.
+[12:18:09] INFO secureguard — Camera started.
+[12:18:09] INFO secureguard — Motion detector ready.
+[12:18:10] INFO secureguard — Face recognizer ready.
+[12:18:11] INFO secureguard — Dashboard: http://localhost:5000
+[12:18:11] INFO secureguard — Login: admin / Admin@1234
+[12:43:52] INFO secureguard — SecureGuard Pro — Starting Up
+[12:43:52] INFO secureguard — Database ready.
+[12:43:52] INFO secureguard — Alert system ready.
+[12:44:11] INFO secureguard — Camera started.
+[12:44:11] INFO secureguard — Motion detector ready.
+[12:44:13] INFO secureguard — Face recognizer ready.
+[12:44:14] INFO secureguard — Dashboard: http://localhost:5000
+[12:44:14] INFO secureguard — Login: admin / Admin@1234
+[12:52:39] INFO secureguard — SecureGuard Pro — Starting Up
+[12:52:39] INFO secureguard — Database ready.
+[12:52:39] INFO secureguard — Alert system ready.
+[12:52:59] INFO secureguard — Camera started.
+[12:52:59] INFO secureguard — Motion detector ready.
+[12:53:01] INFO secureguard — Face recognizer ready.
+[12:53:02] INFO secureguard — Dashboard: http://localhost:5000
+[12:53:02] INFO secureguard — Login: admin / Admin@1234
+[12:55:47] INFO secureguard — SecureGuard Pro — Starting Up
+[12:55:47] INFO secureguard — Database ready.
+[12:55:47] INFO secureguard — Alert system ready.
+[12:56:07] INFO secureguard — Camera started.
+[12:56:07] INFO secureguard — Motion detector ready.
+[12:56:09] INFO secureguard — Face recognizer ready.
+[12:56:09] INFO secureguard — Dashboard: http://localhost:5000
+[12:56:09] INFO secureguard — Login: admin / Admin@1234
+[12:59:29] INFO secureguard — SecureGuard Pro — Starting Up
+[12:59:29] INFO secureguard — Database ready.
+[12:59:29] INFO secureguard — Alert system ready.
+[12:59:47] INFO secureguard — Camera started.
+[12:59:47] INFO secureguard — Motion detector ready.
+[12:59:49] INFO secureguard — Face recognizer ready.
+[12:59:50] INFO secureguard — Dashboard: http://localhost:5000
+[12:59:50] INFO secureguard — Login: admin / Admin@1234
+[13:08:27] INFO secureguard — SecureGuard Pro — Starting Up
+[13:08:27] INFO secureguard — Database ready.
+[13:08:28] INFO secureguard — Alert system ready.
+[13:08:48] INFO secureguard — Camera started.
+[13:08:48] INFO secureguard — Motion detector ready.
+[13:08:50] INFO secureguard — Face recognizer ready.
+[13:08:51] INFO secureguard — Dashboard: http://localhost:5000
+[13:08:51] INFO secureguard — Login: admin / Admin@1234
+[13:23:06] INFO secureguard — SecureGuard Pro — Starting Up
+[13:23:06] INFO secureguard — Database ready.
+[13:23:07] INFO secureguard — Alert system ready.
+[13:23:27] INFO secureguard — Camera started.
+[13:23:27] INFO secureguard — Motion detector ready.
+[13:23:29] INFO secureguard — Face recognizer ready.
+[13:23:30] INFO secureguard — Dashboard: http://localhost:5000
+[13:23:30] INFO secureguard — Login: admin / Admin@1234
+[15:55:11] INFO secureguard — SecureGuard Pro — Starting Up
+[15:55:11] INFO secureguard — Database ready.
+[15:55:12] INFO secureguard — Alert system ready.
+[15:55:36] INFO secureguard — Camera started.
+[15:55:36] INFO secureguard — Motion detector ready.
+[15:55:39] INFO secureguard — Face recognizer ready.
+[15:55:40] INFO secureguard — Dashboard: http://localhost:5000
+[15:55:40] INFO secureguard — Login: admin / Admin@1234
+[17:17:51] INFO secureguard — SecureGuard Pro — Starting Up
+[17:17:52] INFO secureguard — Database ready.
+[17:17:52] INFO secureguard — Alert system ready.
+[17:18:18] INFO secureguard — Camera started.
+[17:18:18] INFO secureguard — Motion detector ready.
+[17:18:23] INFO secureguard — Face recognizer ready.
+[17:18:24] INFO secureguard — Dashboard: http://localhost:5000
+[17:18:24] INFO secureguard — Login: admin / Admin@1234
+[02:05:34] INFO secureguard — SecureGuard Pro — Starting Up
+[02:05:34] INFO secureguard — Database ready.
+[02:05:35] INFO secureguard — Alert system ready.
+[02:05:55] INFO secureguard — Camera started.
+[02:05:55] INFO secureguard — Motion detector ready.
+[02:05:57] INFO secureguard — Face recognizer ready.
+[02:05:59] INFO secureguard — Dashboard: http://localhost:5000
+[02:05:59] INFO secureguard — Login: admin / Admin@1234
+[02:18:28] INFO secureguard — SecureGuard Pro — Starting Up
+[02:18:28] INFO secureguard — Database ready.
+[02:18:28] INFO secureguard — Alert system ready.
+[02:18:51] INFO secureguard — Camera started.
+[02:18:51] INFO secureguard — Motion detector ready.
+[02:18:53] INFO secureguard — Face recognizer ready.
+[02:18:53] INFO secureguard — Dashboard: http://localhost:5000
+[02:18:53] INFO secureguard — Login: admin / Admin@1234
+[14:40:27] INFO secureguard — SecureGuard Pro — Starting Up
+[14:40:27] INFO secureguard — Database ready.
+[14:40:28] INFO secureguard — Alert system ready.
+[14:40:49] INFO secureguard — Camera started.
+[14:40:49] INFO secureguard — Motion detector ready.
+[14:40:51] INFO secureguard — Face recognizer ready.
+[14:40:52] INFO secureguard — Dashboard: http://localhost:5000
+[14:40:52] INFO secureguard — Login: admin / Admin@1234
+[14:47:42] INFO secureguard — SecureGuard Pro — Starting Up
+[14:47:42] INFO secureguard — Database ready.
+[14:47:43] INFO secureguard — Alert system ready.
+[14:48:03] INFO secureguard — Camera started.
+[14:48:03] INFO secureguard — Motion detector ready.
+[14:48:05] INFO secureguard — Face recognizer ready.
+[14:48:06] INFO secureguard — Dashboard: http://localhost:5000
+[14:48:06] INFO secureguard — System ready. Access dashboard at localhost:5000
+[15:02:12] INFO secureguard — SecureGuard Pro — Starting Up
+[15:02:12] INFO secureguard — Database ready.
+[15:02:13] INFO secureguard — Alert system ready.
+[15:02:33] INFO secureguard — Camera started.
+[15:02:33] INFO secureguard — Motion detector ready.
+[15:03:27] WARNING secureguard — Face recognition skipped: You have tensorflow 2.21.0 and this requires tf-keras package. Please run `pip install tf-keras` or downgrade your tensorflow.
+[15:03:27] INFO secureguard — Dashboard: http://localhost:5000
+[15:03:27] INFO secureguard — System ready. Access dashboard at localhost:5000
+[16:53:23] INFO secureguard — SecureGuard Pro — Starting Up
+[16:53:23] INFO secureguard — Database ready.
+[16:53:24] INFO secureguard — Alert system ready.
+[16:53:45] INFO secureguard — Camera started.
+[16:53:45] INFO secureguard — Motion detector ready.
+[16:53:48] INFO secureguard — Face recognizer ready.
+[16:53:49] INFO secureguard — Dashboard: http://localhost:5000
+[16:53:49] INFO secureguard — System ready. Access dashboard at localhost:5000
+[17:17:20] INFO secureguard — SecureGuard Pro — Starting Up
+[17:17:20] INFO secureguard — Database ready.
+[17:17:20] INFO secureguard — Alert system ready.
+[17:17:38] INFO secureguard — Camera started.
+[17:17:38] INFO secureguard — Motion detector ready.
+[17:17:38] WARNING secureguard — Face recognition skipped: expected an indented block after function definition on line 109 (face_recognizer.py, line 110)
+[17:17:39] INFO secureguard — Dashboard: http://localhost:5000
+[17:17:39] INFO secureguard — System ready. Access dashboard at localhost:5000
+[17:23:58] INFO secureguard — SecureGuard Pro — Starting Up
+[17:23:58] INFO secureguard — Database ready.
+[17:23:58] INFO secureguard — Alert system ready.
+[17:24:20] INFO secureguard — Camera started.
+[17:24:20] INFO secureguard — Motion detector ready.
+[17:24:32] WARNING secureguard — Face recognition skipped: You have tensorflow 2.21.0 and this requires tf-keras package. Please run `pip install tf-keras` or downgrade your tensorflow.
+[17:24:32] INFO secureguard — Dashboard: http://localhost:5000
+[17:24:32] INFO secureguard — System ready. Access dashboard at localhost:5000
+[17:26:21] INFO secureguard — SecureGuard Pro — Starting Up
+[17:26:21] INFO secureguard — Database ready.
+[17:26:22] INFO secureguard — Alert system ready.
+[17:26:45] INFO secureguard — Camera started.
+[17:26:45] INFO secureguard — Motion detector ready.
+[17:26:47] INFO secureguard — Face recognizer ready.
+[17:26:48] INFO secureguard — Dashboard: http://localhost:5000
+[17:26:48] INFO secureguard — System ready. Access dashboard at localhost:5000
+[17:58:28] ERROR secureguard — Database error: name 'self' is not defined
+[17:58:28] WARNING secureguard — Alert system skipped: name 'self' is not defined
+[17:58:28] WARNING secureguard — Camera error: name 'self' is not defined
+[17:58:28] WARNING secureguard — Face recognizer error: name 'self' is not defined
+[17:58:35] ERROR secureguard — Critical error: create_app() missing 1 required positional argument: 'motion_detector'
+[18:12:03] WARNING secureguard — Face recognizer error: No module named 'deepface'
+[18:12:04] ERROR secureguard — Critical error: create_app() missing 1 required positional argument: 'motion_detector'
+[18:13:35] INFO secureguard — SecureGuard Pro — Starting Up
+[18:13:35] INFO secureguard — Database ready.
+[18:13:35] INFO secureguard — Alert system ready.
+[18:13:55] INFO secureguard — Camera started.
+[18:13:55] INFO secureguard — Motion detector ready.
+[18:13:57] INFO secureguard — Face recognizer ready.
+[18:13:57] INFO secureguard — Dashboard: http://localhost:5000
+[18:13:57] INFO secureguard — System ready. Access dashboard at localhost:5000
+[18:15:46] INFO secureguard — SecureGuard Pro — Starting Up
+[18:15:46] INFO secureguard — Database ready.
+[18:15:46] INFO secureguard — Alert system ready.
+[18:16:10] INFO secureguard — Camera started.
+[18:16:10] INFO secureguard — Motion detector ready.
+[18:16:12] INFO secureguard — Face recognizer ready.
+[18:16:13] INFO secureguard — Dashboard: http://localhost:5000
+[18:16:13] INFO secureguard — System ready. Access dashboard at localhost:5000
+[19:28:41] INFO secureguard — SecureGuard Pro — Starting Up
+[19:28:42] INFO secureguard — Database ready.
+[19:28:42] INFO secureguard — Alert system ready.
+[19:29:03] INFO secureguard — Camera started.
+[19:29:03] INFO secureguard — Motion detector ready.
+[19:29:18] INFO secureguard — Face recognizer ready.
+[19:29:19] INFO secureguard — Dashboard: http://localhost:5000
+[19:29:19] INFO secureguard — System ready. Access dashboard at localhost:5000
+[15:54:03] INFO secureguard — SecureGuard Pro — Starting Up
+[15:54:03] INFO secureguard — Database ready.
+[15:54:03] INFO secureguard — Alert system ready.
+[15:54:27] INFO secureguard — Camera started.
+[15:54:27] INFO secureguard — Motion detector ready.
+[15:54:45] INFO secureguard — Face recognizer ready.
+[15:54:46] INFO secureguard — Dashboard: http://localhost:5000
+[15:54:46] INFO secureguard — System ready. Access dashboard at localhost:5000
+[16:02:20] INFO secureguard — SecureGuard Pro — Starting Up
+[16:02:20] INFO secureguard — Database ready.
+[16:02:20] INFO secureguard — Alert system ready.
+[16:02:21] INFO secureguard — Camera started.
+[16:02:21] INFO secureguard — Motion detector ready.
+[16:02:33] INFO secureguard — Face recognizer ready.
+[16:02:33] INFO secureguard — Dashboard: http://localhost:5000
+[16:02:33] INFO secureguard — System ready. Access dashboard at localhost:5000
+[16:11:58] INFO secureguard — SecureGuard Pro — Starting Up
+[16:11:58] INFO secureguard — Database ready.
+[16:11:58] INFO secureguard — Alert system ready.
+[16:11:59] INFO secureguard — Camera started.
+[16:11:59] INFO secureguard — Motion detector ready.
+[16:12:17] INFO secureguard — Face recognizer ready.
+[16:12:17] INFO secureguard — Dashboard: http://localhost:5000
+[16:12:17] INFO secureguard — System ready. Access dashboard at localhost:5000
+[16:23:10] INFO secureguard — SecureGuard Pro — Starting Up
+[16:23:10] INFO secureguard — Database ready.
+[16:23:10] INFO secureguard — Alert system ready.
+[16:23:11] INFO secureguard — Camera started.
+[16:23:11] INFO secureguard — Motion detector ready.
+[16:23:26] INFO secureguard — Face recognizer ready.
+[16:23:27] INFO secureguard — Dashboard: http://localhost:5000
+[16:23:27] INFO secureguard — System ready. Access dashboard at localhost:5000
+[11:37:36] INFO secureguard — SecureGuard Pro — Starting Up
+[11:37:36] INFO secureguard — Database ready.
+[11:37:37] INFO secureguard — Alert system ready.
+[11:37:39] INFO secureguard — Camera started.
+[11:37:39] INFO secureguard — Motion detector ready.
+[11:37:57] INFO secureguard — Face recognizer ready.
+[11:37:57] INFO secureguard — Dashboard: http://localhost:5000
+[11:37:57] INFO secureguard — System ready. Access dashboard at localhost:5000
+[11:43:11] INFO secureguard — SecureGuard Pro — Starting Up
+[11:43:11] INFO secureguard — Database ready.
+[11:43:11] INFO secureguard — Alert system ready.
+[11:43:13] INFO secureguard — Camera started.
+[11:43:13] INFO secureguard — Motion detector ready.
+[11:43:27] INFO secureguard — Face recognizer ready.
+[11:43:28] INFO secureguard — Dashboard: http://localhost:5000
+[11:43:28] INFO secureguard — System ready. Access dashboard at localhost:5000
+[11:53:05] INFO secureguard — SecureGuard Pro — Starting Up
+[11:53:05] INFO secureguard — Database ready.
+[11:53:05] INFO secureguard — Alert system ready.
+[11:53:07] INFO secureguard — Camera started.
+[11:53:07] INFO secureguard — Motion detector ready.
+[11:53:19] INFO secureguard — Face recognizer ready.
+[11:53:19] INFO secureguard — Dashboard: http://localhost:5000
+[11:53:19] INFO secureguard — System ready. Access dashboard at localhost:5000
+[11:56:10] INFO secureguard — SecureGuard Pro — Starting Up
+[11:56:10] INFO secureguard — Database ready.
+[11:56:10] INFO secureguard — Alert system ready.
+[11:56:12] INFO secureguard — Camera started.
+[11:56:12] INFO secureguard — Motion detector ready.
+[11:56:27] INFO secureguard — Face recognizer ready.
+[11:56:27] INFO secureguard — Dashboard: http://localhost:5000
+[11:56:27] INFO secureguard — System ready. Access dashboard at localhost:5000
+[12:01:30] INFO secureguard — SecureGuard Pro — Starting Up
+[12:01:30] INFO secureguard — Database ready.
+[12:01:31] INFO secureguard — Alert system ready.
+[12:01:32] INFO secureguard — Camera started.
+[12:01:32] INFO secureguard — Motion detector ready.
+[12:01:48] INFO secureguard — Face recognizer ready.
+[12:01:49] INFO secureguard — Dashboard: http://localhost:5000
+[12:01:49] INFO secureguard — System ready. Access dashboard at localhost:5000
+[12:13:59] INFO secureguard — SecureGuard Pro — Starting Up
+[12:13:59] INFO secureguard — Database ready.
+[12:14:00] INFO secureguard — Alert system ready.
+[12:14:02] INFO secureguard — Camera started.
+[12:14:02] INFO secureguard — Motion detector ready.
+[12:14:14] INFO secureguard — Face recognizer ready.
+[12:14:22] INFO secureguard — Mask detector ready.
+[12:14:22] INFO secureguard — Dashboard: http://localhost:5000
+[12:14:22] INFO secureguard — System ready. Access dashboard at localhost:5000
+[12:20:45] INFO secureguard — SecureGuard Pro — Starting Up
+[12:20:45] INFO secureguard — Database ready.
+[12:20:45] INFO secureguard — Alert system ready.
+[12:20:47] INFO secureguard — Camera started.
+[12:20:47] INFO secureguard — Motion detector ready.
+[12:21:01] INFO secureguard — Face recognizer ready.
+[12:21:01] INFO secureguard — Mask detector ready.
+[12:21:01] INFO secureguard — Dashboard: http://localhost:5000
+[12:21:01] INFO secureguard — System ready. Access dashboard at localhost:5000
+[12:24:42] INFO secureguard — SecureGuard Pro — Starting Up
+[12:24:42] INFO secureguard — Database ready.
+[12:24:42] INFO secureguard — Alert system ready.
+[12:24:44] INFO secureguard — Camera started.
+[12:24:44] INFO secureguard — Motion detector ready.
+[12:24:57] INFO secureguard — Face recognizer ready.
+[12:24:57] INFO secureguard — Mask detector ready.
+[12:24:57] INFO secureguard — Dashboard: http://localhost:5000
+[12:24:57] INFO secureguard — System ready. Access dashboard at localhost:5000
+[13:18:09] INFO secureguard — SecureGuard Pro — Starting Up
+[13:18:10] INFO secureguard — Database ready.
+[13:18:10] INFO secureguard — Alert system ready.
+[13:18:12] INFO secureguard — Camera started.
+[13:18:12] INFO secureguard — Motion detector ready.
+[13:18:52] INFO secureguard — Face recognizer ready.
+[13:18:52] WARNING secureguard — Mask detector skipped: MaskDetector.__init__() got an unexpected keyword argument 'confidence_threshold'
+[13:18:53] INFO secureguard — Dashboard: http://localhost:5000
+[13:18:53] INFO secureguard — System ready. Access dashboard at localhost:5000
+[13:23:25] INFO secureguard — SecureGuard Pro — Starting Up
+[13:23:25] INFO secureguard — Database ready.
+[13:23:25] INFO secureguard — Alert system ready.
+[13:23:27] INFO secureguard — Camera started.
+[13:23:27] INFO secureguard — Motion detector ready.
+[13:31:39] INFO secureguard — SecureGuard Pro — Starting Up
+[13:31:39] INFO secureguard — Database ready.
+[13:31:40] INFO secureguard — Alert system ready.
+[13:31:43] INFO secureguard — Camera started.
+[13:31:43] INFO secureguard — Motion detector ready.
+[13:31:50] WARNING secureguard — Face recognition skipped: module 'tensorflow' has no attribute '__version__'
+[13:31:50] WARNING secureguard — Mask detector skipped: MaskDetector.__init__() got an unexpected keyword argument 'confidence_threshold'
+[13:31:51] INFO secureguard — Dashboard: http://localhost:5000
+[13:31:51] INFO secureguard — System ready. Access dashboard at localhost:5000
+[13:34:32] INFO secureguard — SecureGuard Pro — Starting Up
+[13:34:32] INFO secureguard — Database ready.
+[13:34:32] INFO secureguard — Alert system ready.
+[13:34:34] INFO secureguard — Camera started.
+[13:34:34] INFO secureguard — Motion detector ready.
+[13:34:40] WARNING secureguard — Face recognition skipped: module 'tensorflow' has no attribute '__version__'
+[13:34:44] WARNING secureguard — Mask detector skipped: MaskDetector.__init__() got an unexpected keyword argument 'confidence_threshold'
+[13:34:45] INFO secureguard — Dashboard: http://localhost:5000
+[13:34:45] INFO secureguard — System ready. Access dashboard at localhost:5000
+[13:42:17] INFO secureguard — SecureGuard Pro — Starting Up
+[13:42:17] INFO secureguard — Database ready.
+[13:42:18] INFO secureguard — Alert system ready.
+[13:42:20] INFO secureguard — Camera started.
+[13:42:20] INFO secureguard — Motion detector ready.
+[13:43:18] INFO secureguard — Face recognizer ready.
+[13:43:20] WARNING secureguard — Mask detector skipped: MaskDetector.__init__() got an unexpected keyword argument 'confidence_threshold'
+[13:43:20] INFO secureguard — Dashboard: http://localhost:5000
+[13:43:20] INFO secureguard — System ready. Access dashboard at localhost:5000
+[13:52:11] INFO secureguard — SecureGuard Pro — Starting Up
+[13:52:11] INFO secureguard — Database ready.
+[13:52:11] INFO secureguard — Alert system ready.
+[13:52:14] INFO secureguard — Camera started.
+[13:52:14] INFO secureguard — Motion detector ready.
+[13:52:36] INFO secureguard — Face recognizer ready.
+[13:52:38] INFO secureguard — Mask detector ready.
+[13:52:38] INFO secureguard — People counter ready.
+[13:52:38] INFO secureguard — Dashboard: http://localhost:5000
+[13:52:38] INFO secureguard — System ready. Access dashboard at localhost:5000
+[14:48:15] INFO secureguard — SecureGuard Pro — Starting Up
+[14:48:16] INFO secureguard — Database ready.
+[14:48:16] INFO secureguard — Alert system ready.
+[14:48:19] INFO secureguard — Camera started.
+[14:48:19] INFO secureguard — Motion detector ready.
+[14:48:41] INFO secureguard — Face recognizer ready.
+[14:48:44] INFO secureguard — Mask detector ready.
+[14:48:44] INFO secureguard — People counter ready.
+[14:48:44] INFO secureguard — Dashboard: http://localhost:5000
+[14:48:44] INFO secureguard — System ready. Access dashboard at localhost:5000
+[15:48:37] INFO secureguard — SecureGuard Pro — Starting Up
+[15:48:37] INFO secureguard — Database ready.
+[15:48:37] INFO secureguard — Alert system ready.
+[15:48:38] INFO secureguard — Camera started.
+[15:48:38] INFO secureguard — Motion detector ready.
+[15:48:50] INFO secureguard — Face recognizer ready.
+[15:48:51] INFO secureguard — Mask detector ready.
+[15:48:51] INFO secureguard — People counter ready.
+[15:48:51] INFO secureguard — Dashboard: http://localhost:5000
+[15:48:51] INFO secureguard — System ready. Access dashboard at localhost:5000
+[16:06:09] INFO secureguard — SecureGuard Pro — Starting Up
+[16:06:09] INFO secureguard — Database ready.
+[16:06:10] INFO secureguard — Alert system ready.
+[16:06:11] INFO secureguard — Camera started.
+[16:06:11] INFO secureguard — Motion detector ready.
+[16:06:24] INFO secureguard — Face recognizer ready.
+[16:06:25] INFO secureguard — Mask detector ready.
+[16:06:25] INFO secureguard — People counter ready.
+[16:06:26] INFO secureguard — Dashboard: http://localhost:5000
+[16:06:26] INFO secureguard — System ready. Access dashboard at localhost:5000
+[17:43:43] INFO secureguard — SecureGuard Pro — Starting Up
+[17:43:43] INFO secureguard — Database ready.
+[17:43:43] INFO secureguard — Alert system ready.
+[17:43:44] INFO secureguard — Camera started.
+[17:43:44] INFO secureguard — Motion detector ready.
+[17:43:58] INFO secureguard — Face recognizer ready.
+[17:43:58] INFO secureguard — People counter ready.
+[17:43:58] INFO secureguard — Dashboard: http://localhost:5000
+[17:43:58] INFO secureguard — System ready.
+[17:44:58] INFO secureguard — SecureGuard Pro — Starting Up
+[17:44:58] INFO secureguard — Database ready.
+[17:44:59] INFO secureguard — Alert system ready.
+[17:45:00] INFO secureguard — Camera started.
+[17:45:00] INFO secureguard — Motion detector ready.
+[17:45:11] INFO secureguard — Face recognizer ready.
+[17:45:12] INFO secureguard — Mask detector ready.
+[17:45:12] INFO secureguard — People counter ready.
+[17:45:13] INFO secureguard — Dashboard: http://localhost:5000
+[17:45:13] INFO secureguard — System ready. Access dashboard at localhost:5000
+[18:13:35] INFO secureguard — SecureGuard Pro — Starting Up
+[18:13:35] INFO secureguard — Database ready.
+[18:13:36] INFO secureguard — Alert system ready.
+[18:13:37] INFO secureguard — Camera started.
+[18:13:37] INFO secureguard — Motion detector ready.
+[18:13:54] INFO secureguard — Face recognizer ready.
+[18:13:56] INFO secureguard — Mask detector ready.
+[18:13:56] INFO secureguard — People counter ready.
+[18:13:56] INFO secureguard — Dashboard: http://localhost:5000
+[18:13:56] INFO secureguard — System ready. Access dashboard at localhost:5000
+[18:47:44] INFO secureguard — SecureGuard Pro — Starting Up
+[18:47:44] INFO secureguard — Database ready.
+[18:47:44] INFO secureguard — Alert system ready.
+[18:47:46] INFO secureguard — Camera started.
+[18:47:46] INFO secureguard — Motion detector ready.
+[18:48:03] INFO secureguard — Face recognizer ready.
+[18:48:05] INFO secureguard — Mask detector ready.
+[18:48:05] INFO secureguard — People counter ready.
+[18:48:06] INFO secureguard — Dashboard: http://localhost:5000
+[18:48:06] INFO secureguard — System ready. Access dashboard at localhost:5000
+[16:01:29] INFO secureguard — SecureGuard Pro — Starting Up
+[16:01:29] INFO secureguard — Database ready.
+[16:01:29] INFO secureguard — Alert system ready.
+[16:01:32] INFO secureguard — Camera started.
+[16:01:32] INFO secureguard — Motion detector ready.
+[16:01:51] INFO secureguard — Face recognizer ready.
+[16:01:54] INFO secureguard — Mask detector ready.
+[16:01:54] INFO secureguard — People counter ready.
+[16:01:55] INFO secureguard — Dashboard: http://localhost:5000
+[16:01:55] INFO secureguard — System ready. Access dashboard at localhost:5000
+[16:05:14] INFO secureguard — SecureGuard Pro — Starting Up
+[16:05:14] INFO secureguard — Database ready.
+[16:05:14] INFO secureguard — Alert system ready.
+[16:05:16] INFO secureguard — Camera started.
+[16:05:16] INFO secureguard — Motion detector ready.
+[16:05:34] INFO secureguard — Face recognizer ready.
+[16:05:35] INFO secureguard — Mask detector ready.
+[16:05:35] INFO secureguard — People counter ready.
+[16:05:36] INFO secureguard — Dashboard: http://localhost:5000
+[16:05:36] INFO secureguard — System ready. Access dashboard at localhost:5000
+[16:08:17] INFO secureguard — SecureGuard Pro — Starting Up
+[16:08:17] INFO secureguard — Database ready.
+[16:08:17] INFO secureguard — Alert system ready.
+[16:08:19] INFO secureguard — Camera started.
+[16:08:19] INFO secureguard — Motion detector ready.
+[16:08:35] INFO secureguard — Face recognizer ready.
+[16:08:37] INFO secureguard — Mask detector ready.
+[16:08:37] INFO secureguard — People counter ready.
+[16:08:38] INFO secureguard — Dashboard: http://localhost:5000
+[16:08:38] INFO secureguard — System ready. Access dashboard at localhost:5000
+[12:00:10] INFO secureguard — SecureGuard Pro — Starting Up
+[12:00:10] INFO secureguard — Database ready.
+[12:00:10] INFO secureguard — Alert system ready.
+[12:00:13] INFO secureguard — Camera started.
+[12:00:13] INFO secureguard — Motion detector ready.
+[12:00:30] INFO secureguard — Face recognizer ready.
+[12:00:30] INFO secureguard — People counter ready.
+[12:00:31] INFO secureguard — Dashboard: http://localhost:5000
+[12:00:31] INFO secureguard — System ready. Access dashboard at localhost:5000
+[13:34:46] INFO secureguard — SecureGuard Pro — Starting Up
+[13:34:46] INFO secureguard — Database ready.
+[13:34:47] INFO secureguard — Alert system ready.
+[13:34:49] INFO secureguard — Camera started.
+[13:34:49] INFO secureguard — Motion detector ready.
+[13:35:07] INFO secureguard — Face recognizer ready.
+[13:35:07] INFO secureguard — People counter ready.
+[13:35:08] INFO secureguard — Dashboard: http://localhost:5000
+[13:35:08] INFO secureguard — System ready. Access dashboard at localhost:5000
+[12:40:50] INFO secureguard — SecureGuard Pro — Starting Up
+[12:40:50] INFO secureguard — Database ready.
+[12:40:51] INFO secureguard — Alert system ready.
+[12:40:53] INFO secureguard — Camera started.
+[12:40:53] INFO secureguard — Motion detector ready.
+[12:41:14] INFO secureguard — Face recognizer ready.
+[12:41:14] WARNING secureguard — People counter skipped: No module named 'core.people_counter'
+[12:41:15] INFO secureguard — Dashboard: http://localhost:5000
+[12:41:15] INFO secureguard — System ready. Access dashboard at localhost:5000
+[12:51:57] INFO secureguard — SecureGuard Pro — Starting Up
+[12:51:57] INFO secureguard — Database ready.
+[12:51:57] INFO secureguard — Alert system ready.
+[12:51:59] INFO secureguard — Camera started.
+[12:51:59] INFO secureguard — Motion detector ready.
+[12:52:18] INFO secureguard — Face recognizer ready.
+[12:52:18] INFO secureguard — People counter ready.
+[12:52:18] INFO secureguard — Dashboard: http://localhost:5000
+[12:52:18] INFO secureguard — System ready. Access dashboard at localhost:5000
+[12:57:04] INFO secureguard — SecureGuard Pro — Starting Up
+[12:57:04] INFO secureguard — Database ready.
+[12:57:04] INFO secureguard — Alert system ready.
+[12:57:06] INFO secureguard — Camera started.
+[12:57:06] INFO secureguard — Motion detector ready.
+[12:57:25] INFO secureguard — Face recognizer ready.
+[12:57:25] INFO secureguard — People counter ready.
+[12:57:25] INFO secureguard — Dashboard: http://localhost:5000
+[12:57:25] INFO secureguard — System ready. Access dashboard at localhost:5000
+[13:06:44] INFO secureguard — SecureGuard Pro — Starting Up
+[13:06:44] INFO secureguard — Database ready.
+[13:06:44] INFO secureguard — Alert system ready.
+[13:06:46] INFO secureguard — Camera started.
+[13:06:46] INFO secureguard — Motion detector ready.
+[13:07:02] INFO secureguard — Face recognizer ready.
+[13:07:02] WARNING secureguard — People counter skipped: expected an indented block after function definition on line 211 (people_counter.py, line 212)
+[13:07:02] INFO secureguard — Dashboard: http://localhost:5000
+[13:07:02] INFO secureguard — System ready. Access dashboard at localhost:5000
+[13:09:49] INFO secureguard — SecureGuard Pro — Starting Up
+[13:09:49] INFO secureguard — Database ready.
+[13:09:50] INFO secureguard — Alert system ready.
+[13:09:52] INFO secureguard — Camera started.
+[13:09:52] INFO secureguard — Motion detector ready.
+[13:10:08] INFO secureguard — Face recognizer ready.
+[13:10:08] WARNING secureguard — People counter skipped: No module named 'core.people_counter'
+[13:10:08] INFO secureguard — Dashboard: http://localhost:5000
+[13:10:08] INFO secureguard — System ready. Access dashboard at localhost:5000
+[13:11:45] INFO secureguard — SecureGuard Pro — Starting Up
+[13:11:45] INFO secureguard — Database ready.
+[13:11:45] INFO secureguard — Alert system ready.
+[13:11:47] INFO secureguard — Camera started.
+[13:11:47] INFO secureguard — Motion detector ready.
+[13:12:01] INFO secureguard — Face recognizer ready.
+[13:12:01] WARNING secureguard — People counter skipped: No module named 'core.people_counter'
+[13:12:02] INFO secureguard — Dashboard: http://localhost:5000
+[13:12:02] INFO secureguard — System ready. Access dashboard at localhost:5000
+[17:27:35] INFO secureguard — SecureGuard Pro — Starting Up
+[17:27:35] INFO secureguard — Database ready.
+[17:27:35] INFO secureguard — Alert system ready.
+[17:27:37] INFO secureguard — Camera started.
+[17:27:37] INFO secureguard — Motion detector ready.
+[17:27:56] INFO secureguard — Face recognizer ready.
+[17:27:56] INFO secureguard — People counter ready.
+[17:27:56] INFO secureguard — Dashboard: http://localhost:5000
+[17:27:56] INFO secureguard — System ready. Access dashboard at localhost:5000
+[20:03:27] INFO secureguard — SecureGuard Pro — Starting Up
+[20:03:27] INFO secureguard — Database ready.
+[20:03:28] INFO secureguard — Alert system ready.
+[20:03:30] INFO secureguard — Camera started.
+[20:03:30] INFO secureguard — Motion detector ready.
+[20:05:01] INFO secureguard — SecureGuard Pro — Starting Up
+[20:05:01] INFO secureguard — Database ready.
+[20:05:02] INFO secureguard — Alert system ready.
+[20:05:04] INFO secureguard — Camera started.
+[20:05:04] INFO secureguard — Motion detector ready.
+[20:05:21] INFO secureguard — Face recognizer ready.
+[20:05:21] INFO secureguard — People counter ready.
+[20:05:22] INFO secureguard — Dashboard: http://localhost:5000
+[20:05:22] INFO secureguard — System ready. Access dashboard at localhost:5000

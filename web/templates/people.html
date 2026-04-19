@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureGuard Pro — People Counter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #050a0e; --bg-card: #0d1e2e;
+            --accent-cyan: #00d4ff; --accent-green: #00ff88;
+            --accent-red: #ff3355; --accent-orange: #ff8c00;
+            --accent-yellow: #ffd700; --text-primary: #e0f0ff;
+            --text-secondary: #6a8fa8; --text-muted: #344a5a;
+            --border: #0e2233;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Exo 2',sans-serif; background:var(--bg-primary); color:var(--text-primary); min-height:100vh; }
+        body::before { content:''; position:fixed; inset:0; background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
+
+        .navbar { position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:64px; background:rgba(5,10,14,0.95); border-bottom:1px solid var(--border); backdrop-filter:blur(12px); }
+        .navbar::after { content:''; position:absolute; bottom:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--accent-cyan),transparent); opacity:0.5; }
+        .nav-brand { display:flex; align-items:center; gap:10px; font-family:'Rajdhani',sans-serif; font-size:1.3rem; font-weight:700; letter-spacing:2px; color:var(--accent-cyan); text-transform:uppercase; }
+        .nav-links { display:flex; gap:0.5rem; }
+        .nav-links a { display:flex; align-items:center; gap:6px; padding:6px 16px; color:var(--text-secondary); text-decoration:none; font-family:'Rajdhani',sans-serif; font-weight:600; font-size:0.9rem; letter-spacing:1px; text-transform:uppercase; border-radius:4px; border:1px solid transparent; transition:all 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color:var(--accent-cyan); border-color:rgba(0,212,255,0.2); background:rgba(0,212,255,0.05); }
+        .status-badge-nav { display:flex; align-items:center; gap:6px; padding:5px 14px; border-radius:20px; font-family:'Share Tech Mono',monospace; font-size:0.75rem; background:rgba(0,255,136,0.08); border:1px solid rgba(0,255,136,0.3); color:var(--accent-green); }
+        @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .status-badge-nav .fa-circle { font-size:0.5rem; animation:pulse-dot 2s infinite; }
+
+        .page { position:relative; z-index:1; max-width:1400px; margin:0 auto; padding:2rem; }
+        .page-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border); }
+        .page-header h1 { font-family:'Rajdhani',sans-serif; font-size:2rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; }
+        .page-header h1 span { color:var(--accent-cyan); }
+
+        /* STATS GRID */
+        .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.5rem; }
+        .stat-card { background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:1.5rem; text-align:center; position:relative; overflow:hidden; }
+        .stat-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+        .stat-card.entry::before { background:var(--accent-green); }
+        .stat-card.exit::before { background:var(--accent-red); }
+        .stat-card.current::before { background:var(--accent-cyan); }
+        .stat-card.total::before { background:var(--accent-yellow); }
+        .stat-icon { font-size:2rem; margin-bottom:0.5rem; }
+        .stat-icon.entry { color:var(--accent-green); }
+        .stat-icon.exit { color:var(--accent-red); }
+        .stat-icon.current { color:var(--accent-cyan); }
+        .stat-icon.total { color:var(--accent-yellow); }
+        .stat-number { font-family:'Share Tech Mono',monospace; font-size:2.5rem; font-weight:400; color:var(--text-primary); line-height:1; }
+        .stat-label { font-family:'Rajdhani',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-secondary); margin-top:6px; }
+
+        /* MAIN GRID */
+        .main-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:1.5rem; }
+
+        .card { background:var(--bg-card); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+        .card-header { padding:1rem 1.5rem; border-bottom:1px solid var(--border); background:rgba(0,212,255,0.02); display:flex; align-items:center; justify-content:space-between; }
+        .card-header h2 { display:flex; align-items:center; gap:8px; font-family:'Rajdhani',sans-serif; font-size:1rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+        .card-header h2 i { color:var(--accent-cyan); }
+
+        /* ACTIVE PEOPLE */
+        .active-list { padding:0.5rem 0; max-height:300px; overflow-y:auto; }
+        .active-list::-webkit-scrollbar { width:4px; }
+        .active-list::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+        .active-item { display:flex; align-items:center; gap:12px; padding:0.75rem 1.5rem; border-bottom:1px solid var(--border); }
+        .active-item:last-child { border-bottom:none; }
+        .active-avatar { width:40px; height:40px; border-radius:50%; background:rgba(0,255,136,0.1); border:2px solid rgba(0,255,136,0.3); display:flex; align-items:center; justify-content:center; color:var(--accent-green); font-size:1rem; flex-shrink:0; }
+        .active-info { flex:1; }
+        .active-name { font-family:'Rajdhani',sans-serif; font-size:0.95rem; font-weight:700; color:var(--text-primary); }
+        .active-meta { font-family:'Share Tech Mono',monospace; font-size:0.7rem; color:var(--text-muted); margin-top:2px; }
+        .active-badge { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:20px; font-family:'Share Tech Mono',monospace; font-size:0.65rem; background:rgba(0,255,136,0.08); color:var(--accent-green); border:1px solid rgba(0,255,136,0.25); }
+        .active-badge::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--accent-green); animation:pulse-dot 1s infinite; }
+        .no-people { padding:3rem; text-align:center; color:var(--text-muted); font-family:'Share Tech Mono',monospace; font-size:0.8rem; }
+        .no-people i { font-size:2rem; display:block; margin-bottom:0.75rem; opacity:0.2; }
+
+        /* GENDER CHART */
+        .gender-section { padding:1.5rem; }
+        .gender-row { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+        .gender-label { font-family:'Rajdhani',sans-serif; font-size:0.85rem; font-weight:600; color:var(--text-secondary); min-width:65px; }
+        .gender-bar { flex:1; height:12px; background:rgba(255,255,255,0.05); border-radius:6px; overflow:hidden; }
+        .gender-fill { height:100%; border-radius:6px; transition:width 0.5s; }
+        .gender-fill.male { background:var(--accent-cyan); }
+        .gender-fill.female { background:var(--accent-orange); }
+        .gender-count { font-family:'Share Tech Mono',monospace; font-size:0.8rem; color:var(--text-primary); min-width:30px; text-align:right; }
+
+        /* LOG TABLE */
+        .log-table { width:100%; border-collapse:collapse; }
+        .log-table thead tr { background:rgba(0,212,255,0.04); border-bottom:1px solid var(--border); }
+        .log-table th { padding:0.75rem 1rem; text-align:left; font-family:'Rajdhani',sans-serif; font-size:0.75rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-secondary); }
+        .log-table tbody tr { border-bottom:1px solid var(--border); transition:background 0.2s; }
+        .log-table tbody tr:last-child { border-bottom:none; }
+        .log-table tbody tr:hover { background:rgba(0,212,255,0.02); }
+        .log-table td { padding:0.75rem 1rem; font-size:0.85rem; color:var(--text-primary); }
+        .log-table td.mono { font-family:'Share Tech Mono',monospace; font-size:0.78rem; color:var(--text-secondary); }
+        .status-in { color:var(--accent-green); font-family:'Share Tech Mono',monospace; font-size:0.75rem; }
+        .status-out { color:var(--accent-red); font-family:'Share Tech Mono',monospace; font-size:0.75rem; }
+        .log-scroll { max-height:400px; overflow-y:auto; }
+        .log-scroll::-webkit-scrollbar { width:4px; }
+        .log-scroll::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+
+        .btn { display:inline-flex; align-items:center; gap:6px; padding:7px 16px; border-radius:4px; font-family:'Rajdhani',sans-serif; font-weight:600; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; border:none; cursor:pointer; transition:all 0.2s; text-decoration:none; }
+        .btn-danger { background:rgba(255,51,85,0.1); border:1px solid rgba(255,51,85,0.3); color:var(--accent-red); }
+        .btn-danger:hover { background:rgba(255,51,85,0.2); }
+
+        @media(max-width:900px) {
+            .stats-row { grid-template-columns:repeat(2,1fr); }
+            .main-grid { grid-template-columns:1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><i class="fas fa-shield-alt"></i><span>SecureGuard Pro</span></div>
+        <div class="nav-links">
+            <a href="/"><i class="fas fa-th-large"></i> Dashboard</a>
+            <a href="/live"><i class="fas fa-video"></i> Live Feed</a>
+            <a href="/alerts"><i class="fas fa-bell"></i> Alerts</a>
+            <a href="/people" class="active"><i class="fas fa-users"></i> People</a>
+            <a href="/settings"><i class="fas fa-sliders-h"></i> Settings</a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+        <div class="status-badge-nav"><i class="fas fa-circle"></i> System Online</div>
+    </nav>
+
+    <main class="page">
+        <div class="page-header">
+            <h1>People <span>Counter</span></h1>
+            <button class="btn btn-danger" onclick="resetCounter()">
+                <i class="fas fa-redo"></i> Reset Counter
+            </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat-card current">
+                <div class="stat-icon current"><i class="fas fa-user-check"></i></div>
+                <div class="stat-number" id="stat-current">0</div>
+                <div class="stat-label">Currently Inside</div>
+            </div>
+            <div class="stat-card entry">
+                <div class="stat-icon entry"><i class="fas fa-sign-in-alt"></i></div>
+                <div class="stat-number" id="stat-entries">0</div>
+                <div class="stat-label">Total Entries</div>
+            </div>
+            <div class="stat-card exit">
+                <div class="stat-icon exit"><i class="fas fa-sign-out-alt"></i></div>
+                <div class="stat-number" id="stat-exits">0</div>
+                <div class="stat-label">Total Exits</div>
+            </div>
+            <div class="stat-card total">
+                <div class="stat-icon total"><i class="fas fa-users"></i></div>
+                <div class="stat-number" id="stat-total">0</div>
+                <div class="stat-label">Total Visited Today</div>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Currently Inside -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-user-check"></i> Currently Inside</h2>
+                    <span style="font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:var(--text-secondary)" id="inside-count">0 people</span>
+                </div>
+                <div class="active-list" id="active-list">
+                    <div class="no-people"><i class="fas fa-user-slash"></i>NO ONE INSIDE</div>
+                </div>
+            </div>
+
+            <!-- Gender Breakdown -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-pie"></i> Gender Breakdown</h2>
+                </div>
+                <div class="gender-section">
+                    <div class="gender-row">
+                        <span class="gender-label"><i class="fas fa-mars"></i> Male</span>
+                        <div class="gender-bar"><div class="gender-fill male" id="male-bar" style="width:0%"></div></div>
+                        <span class="gender-count" id="male-count">0</span>
+                    </div>
+                    <div class="gender-row">
+                        <span class="gender-label"><i class="fas fa-venus"></i> Female</span>
+                        <div class="gender-bar"><div class="gender-fill female" id="female-bar" style="width:0%"></div></div>
+                        <span class="gender-count" id="female-count">0</span>
+                    </div>
+                    <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)">
+                        <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;color:var(--text-secondary);letter-spacing:1px;margin-bottom:0.75rem">LIVE CLOCK</div>
+                        <div style="font-family:'Share Tech Mono',monospace;font-size:1.5rem;color:var(--accent-cyan)" id="live-clock">--:--:--</div>
+                        <div style="font-family:'Share Tech Mono',monospace;font-size:0.8rem;color:var(--text-muted);margin-top:4px" id="live-date"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Entry/Exit Log -->
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-history"></i> Entry / Exit Log</h2>
+                <span style="font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:var(--text-secondary)">REAL-TIME</span>
+            </div>
+            <div class="log-scroll">
+                <table class="log-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Entry Time</th>
+                            <th>Exit Time</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="log-tbody">
+                        <tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--text-muted);font-family:'Share Tech Mono',monospace">NO ENTRIES YET</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
+    <script>
+        // Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('live-clock').textContent = now.toTimeString().slice(0,8);
+            document.getElementById('live-date').textContent = now.toLocaleDateString('en-IN',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
+        }
+        setInterval(updateClock, 1000); updateClock();
+
+        async function loadStats() {
+            try {
+                const res = await fetch('/api/people_stats');
+                const data = await res.json();
+
+                // Stats
+                document.getElementById('stat-current').textContent = data.current || 0;
+                document.getElementById('stat-entries').textContent = data.total_entries || 0;
+                document.getElementById('stat-exits').textContent = data.total_exits || 0;
+                document.getElementById('stat-total').textContent = data.total_entries || 0;
+                document.getElementById('inside-count').textContent = `${data.current || 0} people`;
+
+                // Active people
+                const activeList = document.getElementById('active-list');
+                const active = data.active_people || [];
+                if (active.length === 0) {
+                    activeList.innerHTML = '<div class="no-people"><i class="fas fa-user-slash"></i>NO ONE INSIDE</div>';
+                } else {
+                    activeList.innerHTML = active.map(p => `
+                        <div class="active-item">
+                            <div class="active-avatar"><i class="fas fa-user"></i></div>
+                            <div class="active-info">
+                                <div class="active-name">${p.name}</div>
+                                <div class="active-meta">Entry: ${p.entry_time} ${p.age ? '| Age: ' + p.age : ''} ${p.gender ? '| ' + p.gender : ''}</div>
+                            </div>
+                            <span class="active-badge">INSIDE</span>
+                        </div>`).join('');
+                }
+
+                // Gender
+                const g = data.gender_breakdown || {};
+                const m = g.Male || 0;
+                const f = g.Female || 0;
+                const total = m + f || 1;
+                document.getElementById('male-count').textContent = m;
+                document.getElementById('female-count').textContent = f;
+                document.getElementById('male-bar').style.width = (m/total*100) + '%';
+                document.getElementById('female-bar').style.width = (f/total*100) + '%';
+
+                // Log
+                const log = data.log || [];
+                const tbody = document.getElementById('log-tbody');
+                if (log.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--text-muted);font-family:Share Tech Mono,monospace">NO ENTRIES YET</td></tr>';
+                } else {
+                    tbody.innerHTML = log.map(entry => {
+                        const isInside = !entry.exit_time;
+                        const statusHtml = isInside
+                            ? '<span class="status-in">● INSIDE</span>'
+                            : '<span class="status-out">● EXITED</span>';
+                        return `<tr>
+                            <td><strong>${entry.name}</strong></td>
+                            <td class="mono">${entry.date || '--'}</td>
+                            <td class="mono">${entry.entry_time || '--'}</td>
+                            <td class="mono">${entry.exit_time || '—'}</td>
+                            <td class="mono">${entry.gender || '—'}</td>
+                            <td class="mono">${entry.age || '—'}</td>
+                            <td>${statusHtml}</td>
+                        </tr>`;
+                    }).join('');
+                }
+            } catch(e) { console.log('Stats error:', e); }
+        }
+
+        async function resetCounter() {
+            if (!confirm('Reset all people counter data?')) return;
+            try {
+                await fetch('/api/people_counter/reset', { method: 'POST' });
+                loadStats();
+            } catch(e) {}
+        }
+
+        loadStats();
+        setInterval(loadStats, 2000);
+
+        // Socket.IO real-time update
+        try {
+            const socket = io();
+            socket.on('people_stats', loadStats);
+        } catch(e) {}
+    </script>
+</body>
+</html>

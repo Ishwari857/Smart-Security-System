@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureGuard Pro — Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #050a0e;
+            --bg-card: #0d1e2e;
+            --accent-cyan: #00d4ff;
+            --accent-green: #00ff88;
+            --accent-red: #ff3355;
+            --text-primary: #e0f0ff;
+            --text-secondary: #6a8fa8;
+            --text-muted: #344a5a;
+            --border: #0e2233;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+        .login-box {
+            position: relative; z-index: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 40px rgba(0,212,255,0.05);
+        }
+        .brand { text-align: center; margin-bottom: 2rem; }
+        .brand i {
+            font-size: 2.5rem; color: var(--accent-cyan);
+            display: block; margin-bottom: 0.75rem;
+            filter: drop-shadow(0 0 10px rgba(0,212,255,0.5));
+        }
+        .brand h1 {
+            font-family: 'Rajdhani', sans-serif; font-size: 1.5rem;
+            font-weight: 700; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--accent-cyan);
+        }
+        .brand p {
+            font-family: 'Share Tech Mono', monospace; font-size: 0.75rem;
+            color: var(--text-muted); margin-top: 4px; letter-spacing: 1px;
+        }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label {
+            display: block; font-family: 'Rajdhani', sans-serif;
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px;
+        }
+        .input-wrap { position: relative; }
+        .input-wrap i {
+            position: absolute; left: 12px; top: 50%;
+            transform: translateY(-50%); color: var(--text-muted); font-size: 0.85rem;
+        }
+        .form-group input {
+            width: 100%; padding: 10px 14px 10px 36px;
+            background: rgba(0,0,0,0.3); border: 1px solid var(--border);
+            border-radius: 4px; color: var(--text-primary);
+            font-family: 'Exo 2', sans-serif; font-size: 0.9rem;
+            outline: none; transition: border-color 0.2s;
+        }
+        .form-group input:focus {
+            border-color: rgba(0,212,255,0.4);
+            box-shadow: 0 0 0 3px rgba(0,212,255,0.05);
+        }
+        .error-msg {
+            background: rgba(255,51,85,0.1); border: 1px solid rgba(255,51,85,0.3);
+            color: var(--accent-red); padding: 8px 14px; border-radius: 4px;
+            font-size: 0.85rem; margin-bottom: 1rem;
+            font-family: 'Rajdhani', sans-serif; font-weight: 600; letter-spacing: 0.5px;
+        }
+        .btn-login {
+            width: 100%; padding: 11px;
+            background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3);
+            border-radius: 4px; color: var(--accent-cyan);
+            font-family: 'Rajdhani', sans-serif; font-weight: 700;
+            font-size: 1rem; letter-spacing: 2px; text-transform: uppercase;
+            cursor: pointer; transition: all 0.2s; margin-top: 0.5rem;
+        }
+        .btn-login:hover {
+            background: rgba(0,212,255,0.2);
+            box-shadow: 0 0 20px rgba(0,212,255,0.2);
+        }
+        .hint {
+            text-align: center; margin-top: 1.5rem;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="brand">
+            <i class="fas fa-shield-alt"></i>
+            <h1>SecureGuard Pro</h1>
+            <p>AUTHORIZED ACCESS ONLY</p>
+        </div>
+
+        {% if error %}
+        <div class="error-msg"><i class="fas fa-exclamation-circle"></i> {{ error }}</div>
+        {% endif %}
+
+        <form method="POST" autocomplete="off">
+            <div class="form-group">
+                <label>Username</label>
+                <div class="input-wrap">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="username" placeholder="Enter username"
+                           required autofocus autocomplete="off">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <div class="input-wrap">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" placeholder="Enter password"
+                           required autocomplete="new-password">
+                </div>
+            </div>
+            <button type="submit" class="btn-login">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+        </form>
+
+        <div class="hint">SECUREGUARD PRO v1.0</div>
+    </div>
+</body>
+</html>

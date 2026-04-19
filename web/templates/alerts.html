@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureGuard Pro — Alerts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #050a0e;
+            --bg-secondary: #0a1520;
+            --bg-card: #0d1e2e;
+            --bg-card-hover: #112233;
+            --accent-cyan: #00d4ff;
+            --accent-green: #00ff88;
+            --accent-red: #ff3355;
+            --accent-orange: #ff8c00;
+            --accent-yellow: #ffd700;
+            --text-primary: #e0f0ff;
+            --text-secondary: #6a8fa8;
+            --text-muted: #344a5a;
+            --border: #0e2233;
+            --border-glow: rgba(0,212,255,0.2);
+            --glow-cyan: 0 0 20px rgba(0,212,255,0.3);
+            --glow-red: 0 0 20px rgba(255,51,85,0.4);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+        body::before {
+            content:'';
+            position:fixed; inset:0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events:none; z-index:0;
+        }
+        /* Navbar */
+        .navbar {
+            position:sticky; top:0; z-index:100;
+            display:flex; align-items:center; justify-content:space-between;
+            padding:0 2rem; height:64px;
+            background:rgba(5,10,14,0.95);
+            border-bottom:1px solid var(--border);
+            backdrop-filter:blur(12px);
+        }
+        .navbar::after {
+            content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
+            background:linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            opacity:0.5;
+        }
+        .nav-brand {
+            display:flex; align-items:center; gap:10px;
+            font-family:'Rajdhani',sans-serif; font-size:1.3rem; font-weight:700;
+            letter-spacing:2px; color:var(--accent-cyan); text-transform:uppercase;
+        }
+        .nav-brand i { font-size:1.5rem; filter:drop-shadow(var(--glow-cyan)); }
+        .nav-links { display:flex; gap:0.5rem; }
+        .nav-links a {
+            display:flex; align-items:center; gap:6px;
+            padding:6px 16px; color:var(--text-secondary); text-decoration:none;
+            font-family:'Rajdhani',sans-serif; font-weight:600; font-size:0.9rem;
+            letter-spacing:1px; text-transform:uppercase;
+            border-radius:4px; border:1px solid transparent; transition:all 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color:var(--accent-cyan); border-color:var(--border-glow);
+            background:rgba(0,212,255,0.05); text-shadow:0 0 8px var(--accent-cyan);
+        }
+        .status-badge-nav {
+            display:flex; align-items:center; gap:6px; padding:5px 14px;
+            border-radius:20px; font-family:'Share Tech Mono',monospace;
+            font-size:0.75rem; letter-spacing:1px;
+            background:rgba(0,255,136,0.08); border:1px solid rgba(0,255,136,0.3);
+            color:var(--accent-green);
+        }
+        .status-badge-nav .fa-circle { font-size:0.5rem; animation:pulse-dot 2s infinite; }
+        @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+        /* Main */
+        .page { position:relative; z-index:1; max-width:1400px; margin:0 auto; padding:2rem; }
+
+        .page-header {
+            display:flex; align-items:center; justify-content:space-between;
+            margin-bottom:2rem; padding-bottom:1.5rem;
+            border-bottom:1px solid var(--border);
+        }
+        .page-header h1 {
+            font-family:'Rajdhani',sans-serif; font-size:2rem; font-weight:700;
+            letter-spacing:3px; text-transform:uppercase;
+        }
+        .page-header h1 span { color:var(--accent-cyan); text-shadow:var(--glow-cyan); }
+
+        .filter-bar {
+            display:flex; align-items:center; gap:0.75rem;
+        }
+        select {
+            background:var(--bg-card); border:1px solid var(--border);
+            color:var(--text-primary); padding:7px 14px; border-radius:4px;
+            font-family:'Rajdhani',sans-serif; font-size:0.85rem; font-weight:600;
+            letter-spacing:1px; outline:none; cursor:pointer;
+        }
+        select:focus { border-color:var(--border-glow); }
+
+        .btn {
+            display:inline-flex; align-items:center; gap:6px;
+            padding:7px 18px; border-radius:4px;
+            font-family:'Rajdhani',sans-serif; font-weight:600;
+            font-size:0.85rem; letter-spacing:1px; text-transform:uppercase;
+            text-decoration:none; border:none; cursor:pointer; transition:all 0.2s;
+        }
+        .btn-primary {
+            background:rgba(0,212,255,0.1); border:1px solid rgba(0,212,255,0.3);
+            color:var(--accent-cyan);
+        }
+        .btn-primary:hover { background:rgba(0,212,255,0.2); box-shadow:var(--glow-cyan); }
+        .btn-secondary {
+            background:rgba(255,255,255,0.03); border:1px solid var(--border);
+            color:var(--text-secondary);
+        }
+        .btn-secondary:hover { background:rgba(255,255,255,0.06); color:var(--text-primary); }
+        .btn-sm { padding:4px 12px; font-size:0.75rem; }
+        .btn-danger {
+            background:rgba(255,51,85,0.1); border:1px solid rgba(255,51,85,0.3);
+            color:var(--accent-red);
+        }
+        .btn-danger:hover { background:rgba(255,51,85,0.2); box-shadow:var(--glow-red); }
+
+        /* Table */
+        .table-card {
+            background:var(--bg-card); border:1px solid var(--border);
+            border-radius:8px; overflow:hidden;
+        }
+        .table-card-header {
+            display:flex; align-items:center; justify-content:space-between;
+            padding:1rem 1.5rem; border-bottom:1px solid var(--border);
+            background:rgba(0,212,255,0.02);
+        }
+        .table-card-header h2 {
+            display:flex; align-items:center; gap:8px;
+            font-family:'Rajdhani',sans-serif; font-size:1rem; font-weight:700;
+            letter-spacing:2px; text-transform:uppercase;
+        }
+        .table-card-header h2 i { color:var(--accent-cyan); }
+
+        table { width:100%; border-collapse:collapse; }
+        thead tr {
+            background:rgba(0,212,255,0.04);
+            border-bottom:1px solid var(--border);
+        }
+        th {
+            padding:0.85rem 1.25rem; text-align:left;
+            font-family:'Rajdhani',sans-serif; font-size:0.75rem; font-weight:700;
+            letter-spacing:2px; text-transform:uppercase; color:var(--text-secondary);
+        }
+        tbody tr {
+            border-bottom:1px solid var(--border); transition:background 0.2s;
+        }
+        tbody tr:last-child { border-bottom:none; }
+        tbody tr:hover { background:rgba(0,212,255,0.02); }
+        tbody tr.unread { border-left:2px solid var(--accent-orange); }
+
+        /* Row delete animation */
+        tbody tr.deleting {
+            animation: fadeOutRow 0.35s forwards;
+        }
+        @keyframes fadeOutRow {
+            to { opacity:0; transform:translateX(30px); }
+        }
+
+        td {
+            padding:0.85rem 1.25rem;
+            font-size:0.88rem; color:var(--text-primary);
+        }
+        td.time-col {
+            font-family:'Share Tech Mono',monospace; font-size:0.78rem;
+            color:var(--text-secondary); white-space:nowrap;
+        }
+
+        /* Action buttons side by side */
+        td.action-col {
+            display:flex; align-items:center; gap:6px; flex-wrap:nowrap;
+        }
+
+        .type-badge {
+            display:inline-block; padding:3px 10px; border-radius:3px;
+            font-family:'Share Tech Mono',monospace; font-size:0.68rem;
+            letter-spacing:1px; text-transform:uppercase;
+        }
+        .type-badge.motion   { background:rgba(255,140,0,0.1);  color:var(--accent-orange); border:1px solid rgba(255,140,0,0.25); }
+        .type-badge.face     { background:rgba(255,51,85,0.1);  color:var(--accent-red);    border:1px solid rgba(255,51,85,0.25); }
+        .type-badge.unknown  { background:rgba(255,215,0,0.1);  color:var(--accent-yellow); border:1px solid rgba(255,215,0,0.25); }
+        .type-badge.info     { background:rgba(0,212,255,0.1);  color:var(--accent-cyan);   border:1px solid rgba(0,212,255,0.25); }
+
+        .status-pill {
+            display:inline-flex; align-items:center; gap:5px;
+            padding:3px 10px; border-radius:20px;
+            font-family:'Share Tech Mono',monospace; font-size:0.68rem; letter-spacing:1px;
+        }
+        .status-pill.pending      { background:rgba(255,140,0,0.08); color:var(--accent-orange); border:1px solid rgba(255,140,0,0.25); }
+        .status-pill.acknowledged { background:rgba(0,255,136,0.08); color:var(--accent-green);  border:1px solid rgba(0,255,136,0.25); }
+        .status-pill::before {
+            content:''; width:5px; height:5px; border-radius:50%; background:currentColor;
+        }
+
+        .empty-state {
+            text-align:center; padding:4rem;
+            color:var(--text-muted); font-family:'Share Tech Mono',monospace;
+            font-size:0.85rem; letter-spacing:1px;
+        }
+        .empty-state i { font-size:3rem; display:block; margin-bottom:1rem; opacity:0.2; }
+
+        /* Pagination */
+        .pagination {
+            display:flex; align-items:center; justify-content:center; gap:1rem;
+            padding:1.5rem;
+            font-family:'Share Tech Mono',monospace; font-size:0.8rem;
+            color:var(--text-secondary);
+            border-top:1px solid var(--border);
+        }
+
+        /* Confirm dialog overlay */
+        .confirm-overlay {
+            display:none; position:fixed; inset:0; z-index:999;
+            background:rgba(0,0,0,0.7); backdrop-filter:blur(4px);
+            align-items:center; justify-content:center;
+        }
+        .confirm-overlay.active { display:flex; }
+        .confirm-box {
+            background:var(--bg-card); border:1px solid rgba(255,51,85,0.4);
+            border-radius:8px; padding:2rem; max-width:360px; width:90%;
+            box-shadow:var(--glow-red); text-align:center;
+        }
+        .confirm-box i { font-size:2.5rem; color:var(--accent-red); margin-bottom:1rem; display:block; }
+        .confirm-box h3 {
+            font-family:'Rajdhani',sans-serif; font-size:1.2rem; font-weight:700;
+            letter-spacing:2px; text-transform:uppercase; margin-bottom:0.5rem;
+        }
+        .confirm-box p {
+            color:var(--text-secondary); font-size:0.85rem; margin-bottom:1.5rem;
+        }
+        .confirm-actions { display:flex; gap:0.75rem; justify-content:center; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-shield-alt"></i>
+            <span>SecureGuard Pro</span>
+        </div>
+        <div class="nav-links">
+            <a href="/"><i class="fas fa-th-large"></i> Dashboard</a>
+            <a href="/live"><i class="fas fa-video"></i> Live Feed</a>
+            <a href="/alerts" class="active"><i class="fas fa-bell"></i> Alerts</a>
+            <a href="/settings"><i class="fas fa-sliders-h"></i> Settings</a>
+        </div>
+        <div class="status-badge-nav">
+            <i class="fas fa-circle"></i> System Online
+        </div>
+    </nav>
+
+    <main class="page">
+        <div class="page-header">
+            <h1>Security <span>Alerts</span></h1>
+            <div class="filter-bar">
+                <select id="filter-type">
+                    <option value="all">All Types</option>
+                    <option value="motion">Motion</option>
+                    <option value="face">Face</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+                <button class="btn btn-danger" id="mark-all-read">
+                    <i class="fas fa-check-double"></i> Mark All Read
+                </button>
+                <!-- ✅ NEW: Delete All button -->
+                <button class="btn btn-danger" id="delete-all-btn">
+                    <i class="fas fa-trash-alt"></i> Delete All
+                </button>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <div class="table-card-header">
+                <h2><i class="fas fa-bell"></i> Alert Log</h2>
+                <span style="font-family:'Share Tech Mono',monospace; font-size:0.75rem; color:var(--text-secondary);">
+                    PAGE {{ page }}
+                </span>
+            </div>
+
+            {% if alerts %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Face Detected</th>
+                        <th>Capture</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="alerts-tbody">
+                    {% for alert in alerts %}
+                    <tr class="{{ 'unread' if not alert.is_acknowledged else '' }}" id="row-{{ alert.id }}">
+                        <td class="time-col">{{ alert.timestamp }}</td>
+                        <td>
+                            <span class="type-badge {{ alert.alert_type }}">
+                                {{ alert.alert_type }}
+                            </span>
+                        </td>
+                        <td>{{ alert.description }}</td>
+                        <td style="color:var(--text-secondary);">{{ alert.face_detected or '—' }}</td>
+                        <td>
+                            {% if alert.image_path %}
+                            <a href="/captures/{{ alert.image_path.split('\\')[-1].split('/')[-1] }}"
+                                <i class="fas fa-image"></i> View
+                            </a>
+                            {% else %}
+                            <span style="color:var(--text-muted);">—</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if alert.is_acknowledged %}
+                            <span class="status-pill acknowledged">Acknowledged</span>
+                            {% else %}
+                            <span class="status-pill pending">Pending</span>
+                            {% endif %}
+                        </td>
+                        <!-- ✅ Action column: ACK + Delete side by side -->
+                        <td class="action-col">
+                            {% if not alert.is_acknowledged %}
+                            <button class="btn btn-sm btn-primary acknowledge-btn" data-id="{{ alert.id }}">
+                                <i class="fas fa-check"></i> Ack
+                            </button>
+                            {% endif %}
+                            <button class="btn btn-sm btn-danger delete-btn" data-id="{{ alert.id }}">
+                                <i class="fas fa-trash"></i> Del
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="empty-state">
+                <i class="fas fa-shield-check"></i>
+                NO ALERTS FOUND
+            </div>
+            {% endif %}
+
+            <div class="pagination">
+                {% if page > 1 %}
+                <a href="?page={{ page - 1 }}" class="btn btn-secondary">
+                    <i class="fas fa-chevron-left"></i> Prev
+                </a>
+                {% endif %}
+                <span>PAGE {{ page }}</span>
+                <a href="?page={{ page + 1 }}" class="btn btn-secondary">
+                    Next <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- ✅ Confirm Delete Dialog -->
+    <div class="confirm-overlay" id="confirm-overlay">
+        <div class="confirm-box">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h3 id="confirm-title">Delete Alert?</h3>
+            <p id="confirm-msg">Yeh alert permanently delete ho jayega.</p>
+            <div class="confirm-actions">
+                <button class="btn btn-secondary" id="confirm-cancel">Cancel</button>
+                <button class="btn btn-danger" id="confirm-ok">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // ── ACK buttons ──────────────────────────────────────────────────
+        document.querySelectorAll('.acknowledge-btn').forEach(btn => {
+            btn.addEventListener('click', async function () {
+                const id = this.dataset.id;
+                const res = await fetch(`/api/alerts/${id}/acknowledge`, { method: 'POST' });
+                if (res.ok) location.reload();
+            });
+        });
+
+        document.getElementById('mark-all-read')?.addEventListener('click', async () => {
+            const btns = document.querySelectorAll('.acknowledge-btn');
+            for (const btn of btns) {
+                await fetch(`/api/alerts/${btn.dataset.id}/acknowledge`, { method: 'POST' });
+            }
+            location.reload();
+        });
+
+        // ── Filter ───────────────────────────────────────────────────────
+        document.getElementById('filter-type')?.addEventListener('change', function () {
+            const val = this.value;
+            document.querySelectorAll('#alerts-tbody tr').forEach(row => {
+                if (val === 'all') { row.style.display = ''; return; }
+                const type = row.querySelector('.type-badge')?.textContent.trim().toLowerCase();
+                row.style.display = type?.includes(val) ? '' : 'none';
+            });
+        });
+
+        // ── Confirm dialog helpers ────────────────────────────────────────
+        const overlay   = document.getElementById('confirm-overlay');
+        const confirmOk = document.getElementById('confirm-ok');
+        const confirmCancel = document.getElementById('confirm-cancel');
+        let pendingAction = null;   // function to run on OK
+
+        function showConfirm(title, msg, onOk) {
+            document.getElementById('confirm-title').textContent = title;
+            document.getElementById('confirm-msg').textContent   = msg;
+            pendingAction = onOk;
+            overlay.classList.add('active');
+        }
+
+        confirmCancel.addEventListener('click', () => {
+            overlay.classList.remove('active');
+            pendingAction = null;
+        });
+        overlay.addEventListener('click', e => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+                pendingAction = null;
+            }
+        });
+        confirmOk.addEventListener('click', async () => {
+            overlay.classList.remove('active');
+            if (pendingAction) await pendingAction();
+            pendingAction = null;
+        });
+
+        // ── Single Delete ─────────────────────────────────────────────────
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const id  = this.dataset.id;
+                const row = document.getElementById(`row-${id}`);
+                showConfirm(
+                    'Delete Alert?',
+                    'Yeh alert permanently delete ho jayega.',
+                    async () => {
+                        const res = await fetch(`/api/alerts/${id}/delete`, { method: 'DELETE' });
+                        if (res.ok) {
+                            row.classList.add('deleting');
+                            setTimeout(() => row.remove(), 350);
+                        } else {
+                            alert('Delete failed. Check server logs.');
+                        }
+                    }
+                );
+            });
+        });
+
+        // ── Delete All ────────────────────────────────────────────────────
+        document.getElementById('delete-all-btn')?.addEventListener('click', () => {
+            showConfirm(
+                'Delete All Alerts?',
+                'Database ke SAARE alerts delete ho jayenge. Yeh undo nahi ho sakta.',
+                async () => {
+                    try {
+                        const res = await fetch('/api/alerts/delete_all', { method: 'DELETE' });
+                        if (res.ok) {
+                            location.reload();
+                        } else {
+                            alert('Delete All failed. Check server logs.');
+                        }
+                    } catch (e) {
+                        alert('Network error: ' + e.message);
+                    }
+                }
+            );
+        });
+    </script>
+</body>
+</html>
