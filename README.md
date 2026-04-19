@@ -24,16 +24,55 @@ This system provides live monitoring, motion detection, face recognition, alert 
 ```
 smart-security-system/
 │
-├── core/                # Backend logic (AI + detection)
-├── data/                # Captured images & database
-├── logs/                # System logs
-├── models/              # Pre-trained ML models
-├── web/                 # Flask web app (UI + APIs)
-├── config/              # Configuration files
+├── core/                      # 🔧 Main backend logic
+│   ├── __init__.py
+│   ├── alert_system.py
+│   ├── camera.py
+│   ├── database.py
+│   ├── face_recognizer.py
+│   ├── motion_detector.py
+│   └── people_counter.py
 │
-├── main.py              # Entry point
-├── requirements.txt     # Dependencies
-├── .env                 # Environment variables
+├── data/                      # 📂 Stored data
+│   ├── captures/              # Captured images
+│   ├── known_faces/           # Known persons dataset
+│   └── database.db            # SQLite database
+│
+├── logs/                      # 📜 Logs
+│   └── security.log
+│
+├── models/                    # 🤖 ML Models
+│   ├── deploy.prototxt
+│   └── res10_300x300_ssd_iter_140000.caffemodel
+│
+├── web/                       # 🌐 Frontend + Web app
+│   ├── static/
+│   │   ├── css/
+│   │   ├── js/
+│   │   └── alert.mp3
+│   │
+│   ├── templates/
+│   │   ├── index.html
+│   │   ├── login.html
+│   │   ├── live.html
+│   │   ├── alerts.html
+│   │   ├── people.html
+│   │   └── settings.html
+│   │
+│   ├── recorder.py
+│   ├── app.py
+│   └── __init__.py
+│
+├── config/                    # ⚙️ Configuration files
+│   └── config.py
+│
+├── .env                       # 🔐 Environment variables
+├── .gitignore
+├── main.py                    # 🚀 Entry point
+├── requirements.txt           # 📦 Dependencies
+│
+├── venv/                      # 🐍 Virtual environment
+└── smart_security_system_venv/
 ```
 
 ---
